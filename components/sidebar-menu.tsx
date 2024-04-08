@@ -1,6 +1,6 @@
 export default function SideBarMenu() {
   return (
-    <div className="fixed h-full top-0 left-0 bg-[#efefef] w-[160px] p-4">
+    <div className="hidden lg:block fixed h-full bg-white w-[160px] p-4">
       <p>Menu</p>
     </div>
   );

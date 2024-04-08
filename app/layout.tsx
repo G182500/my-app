@@ -15,10 +15,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  //container does not center itself automatically (mx-auto)
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex flex-row">
+        <div className="flex flex-row 2xl:container 2xl:mx-auto">
           <SideBarMenu />
           {children}
         </div>
