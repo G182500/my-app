@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex flex-row 2xl:container 2xl:mx-auto">
+        <div className="flex flex-row p-1 2xl:container 2xl:mx-auto">
           <SideBarMenu />
           {children}
         </div>
