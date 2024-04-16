@@ -18,12 +18,7 @@ export default function RootLayout({
   //container does not center itself automatically (mx-auto)
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className="flex flex-row p-1 2xl:container 2xl:mx-auto">
-          <SideBarMenu />
-          {children}
-        </div>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
