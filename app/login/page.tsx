@@ -34,10 +34,12 @@ export default function Login() {
           placeholder="Senha"
           {...register("password")}
         />
-        <p className="text-black text-xs">Preencha corretamente</p>
+        <p className="font-semibold text-red-600 text-[8px]">
+          Preencha todas as informações
+        </p>
         <input
           value={"Login"}
-          className="flex self-end bg-green-400 font-semibold py-1 px-3 rounded-2xl text-sm w-fit"
+          className="flex self-end bg-green-400 font-semibold py-1 px-3 rounded-2xl text-xs w-fit"
           type="submit"
         />
       </form>
