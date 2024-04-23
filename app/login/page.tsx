@@ -9,8 +9,18 @@ interface LoginInputs {
 export default function Login() {
   const { register, handleSubmit } = useForm<LoginInputs>();
 
-  const onSubmit: SubmitHandler<LoginInputs> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<LoginInputs> = async (data) => {
+    const response = await fetch("/api/user/read", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.status === 200) {
+      console.log(await response.json());
+    }
   };
 
   return (
