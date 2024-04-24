@@ -10,7 +10,7 @@ export default function Login() {
   const { register, handleSubmit } = useForm<LoginInputs>();
 
   const onSubmit: SubmitHandler<LoginInputs> = async (data) => {
-    const response = await fetch("/api/user/read", {
+    const response = await fetch("/api/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,6 +18,7 @@ export default function Login() {
       body: JSON.stringify(data),
     });
 
+    console.log(await response.json());
     if (response.status === 200) {
       console.log(await response.json());
     }
@@ -35,13 +36,14 @@ export default function Login() {
         </p>
         {/*register the input into hook invoking the "register" function*/}
         <input
-          className="border-2 mb-2 px-2 py-1 rounded-xl text-sm"
+          className="border-2 mb-2 px-2 py-1 rounded-xl text-black text-sm"
           placeholder="E-mail"
           {...register("user")}
         />
         <input
-          className="border-2 mb-3 px-2 py-1 rounded-xl text-sm"
+          className="border-2 mb-3 px-2 py-1 rounded-xl text-black text-sm"
           placeholder="Senha"
+          type="password"
           {...register("password")}
         />
         <p className="font-semibold text-red-600 text-[8px]">
