@@ -24,12 +24,12 @@ export async function POST(req: NextRequest) {
     });
     if (found === undefined) {
       return NextResponse.json(
-        { message: "User not founded" },
+        { message: "Usuário não encontrado" },
         { status: 404 }
       );
     } else {
       return NextResponse.json(
-        { message: "User founded", user: found },
+        { message: "Usuário encontrado", user: found },
         { status: 200 }
       );
     }

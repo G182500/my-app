@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface LoginInputs {
@@ -8,6 +9,7 @@ interface LoginInputs {
 
 export default function Login() {
   const { register, handleSubmit } = useForm<LoginInputs>();
+  const [message, setMessage] = useState<string>();
 
   const onSubmit: SubmitHandler<LoginInputs> = async (data) => {
     const response = await fetch("/api/user/login", {
@@ -18,9 +20,14 @@ export default function Login() {
       body: JSON.stringify(data),
     });
 
-    console.log(await response.json());
+    const respData = await response.json();
+
     if (response.status === 200) {
-      console.log(await response.json());
+      console.log(respData);
+      //Salvar nos cookies o login aqui
+    } else {
+      //Limpar os campos
+      setMessage(respData.message);
     }
   };
 
@@ -46,9 +53,11 @@ export default function Login() {
           type="password"
           {...register("password")}
         />
-        <p className="font-semibold text-red-600 text-[8px]">
-          Preencha todas as informações
-        </p>
+        {message && (
+          <p className="font-semibold ml-2 text-red-600 text-[8px]">
+            {message}
+          </p>
+        )}
         <input
           value={"Login"}
           className="flex self-end bg-green-400 font-semibold py-1 px-3 rounded-2xl text-xs w-fit"
