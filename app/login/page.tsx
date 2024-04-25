@@ -9,7 +9,7 @@ interface LoginInputs {
 }
 
 export default function Login() {
-  const { register, handleSubmit } = useForm<LoginInputs>();
+  const { register, reset, handleSubmit } = useForm<LoginInputs>();
   const [message, setMessage] = useState<string>();
 
   const onSubmit: SubmitHandler<LoginInputs> = async (data) => {
@@ -27,8 +27,8 @@ export default function Login() {
       console.log(respData);
       //Salvar nos cookies o login aqui
     } else {
-      //Limpar os campos
       setMessage(respData.message);
+      reset(); //Limpar os campos
     }
   };
 
