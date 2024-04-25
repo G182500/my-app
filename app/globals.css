@@ -37,3 +37,13 @@ button.success {
   padding-left: 0.75rem; /*12px*/
   padding-right: 0.75rem;
 }
+
+input {
+  border-radius: 0.75rem /*12px*/;
+  border-width: 2px;
+  margin-bottom: 0.5rem; /*8px*/
+  padding-top: 0.25rem; /*4px*/
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
