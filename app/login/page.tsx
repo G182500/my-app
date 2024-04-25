@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { LogIn } from "lucide-react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface LoginInputs {
@@ -43,12 +44,12 @@ export default function Login() {
         </p>
         {/*register the input into hook invoking the "register" function*/}
         <input
-          className="border-2 mb-2 px-2 py-1 rounded-xl text-black text-sm"
+          className="border-2 mb-2 px-2 py-1 rounded-xl text-black text-xs"
           placeholder="E-mail"
           {...register("user")}
         />
         <input
-          className="border-2 mb-3 px-2 py-1 rounded-xl text-black text-sm"
+          className="border-2 mb-3 px-2 py-1 rounded-xl text-black text-xs"
           placeholder="Senha"
           type="password"
           {...register("password")}
@@ -58,15 +59,18 @@ export default function Login() {
             {message}
           </p>
         )}
-        <input
-          value={"Login"}
-          className="flex self-end bg-green-400 font-semibold py-1 px-3 rounded-2xl text-xs w-fit"
+        <button
+          className="success font-semibold self-end text-xs w-fit"
           type="submit"
-        />
+        >
+          <LogIn size={16} />
+          Entrar
+        </button>
       </form>
     </div>
   );
 }
 
+//https://lucide.dev/icons/
 //https://react-hook-form.com/get-started
 //https://colorhunt.co/palette/b4b4b8c7c8cce3e1d9f2efe5

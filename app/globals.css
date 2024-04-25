@@ -26,3 +26,14 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+button.success {
+  background-color: rgb(74 222 128 / 1);
+  border-radius: 1rem; /*16px*/
+  display: flex;
+  gap: 0.25rem; /*4px*/
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.75rem; /*12px*/
+  padding-right: 0.75rem;
+}
