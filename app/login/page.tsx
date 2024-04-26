@@ -1,35 +1,60 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { User } from "@/app/interfaces/user";
+import { useRouter } from "next/navigation";
 import { LogIn } from "lucide-react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-interface LoginInputs {
+interface LoginForm {
   user: string;
   password: string;
 }
 
 export default function Login() {
-  const { register, reset, handleSubmit } = useForm<LoginInputs>();
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>();
 
-  const onSubmit: SubmitHandler<LoginInputs> = async (data) => {
-    const response = await fetch("/api/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+  const { register, reset, handleSubmit } = useForm<LoginForm>();
 
-    const respData = await response.json();
-
-    if (response.status === 200) {
-      console.log(respData);
-      //Salvar nos cookies o login aqui
-    } else {
-      setMessage(respData.message);
-      reset(); //Limpar os campos
+  //Autenticação
+  useEffect(() => {
+    const authenticatedUser = localStorage.getItem("token");
+    if (authenticatedUser) {
+      console.log(localStorage);
+      void router.push("/");
     }
+  }, [router]);
+
+  //Form
+  const onSubmit: SubmitHandler<LoginForm> = async (data) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch("/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const { message, user }: { message: string; user: User } =
+        await response.json();
+
+      if (response.status === 200) {
+        //disponível em console.log -> application
+        localStorage.setItem("userId", user.user.id);
+        localStorage.setItem("token", user.token);
+        void router.push("/");
+      } else {
+        setMessage(message);
+        reset(); //Limpar os campos
+      }
+    } catch (error) {
+      console.log(error);
+      setMessage("Erro no servidor");
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -52,6 +77,11 @@ export default function Login() {
           type="password"
           {...register("password")}
         />
+        {isLoading && (
+          <p className="font-semibold ml-2 text-blue-600 text-[8px]">
+            Carregando...
+          </p>
+        )}
         {message && (
           <p className="font-semibold ml-2 text-red-600 text-[8px]">
             {message}

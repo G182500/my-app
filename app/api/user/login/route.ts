@@ -1,36 +1,37 @@
 import { NextRequest, NextResponse } from "next/server";
+import { User } from "@/app/interfaces/user";
 import fs from "fs"; //Trabalhar com arquivos
-
-interface Login {
-  user: string;
-  password: string;
-}
 
 export async function GET(req: NextRequest) {}
 
 export async function POST(req: NextRequest) {
   try {
     //Fazer senha encriptada depois
-    const { user: userInput, password: passwordInput }: Login =
-      await req.json();
+    const {
+      user: userInput,
+      password: passwordInput,
+    }: {
+      user: string;
+      password: string;
+    } = await req.json();
 
     //Acessar a simulação do banco de dados
     const jsonData = fs.readFileSync("app/assets/json/users.json", "utf-8");
-    const data: Login[] = JSON.parse(jsonData); //JSON to object
+    const data: User[] = JSON.parse(jsonData); //JSON to object
 
     //Pesquisar o usuário
-    const found = data.find(({ user, password }) => {
-      return user === userInput && password === passwordInput;
+    const found = data.find(({ user }) => {
+      return user.user === userInput && user.password === passwordInput;
     });
-    if (found === undefined) {
-      return NextResponse.json(
-        { message: "Usuário não encontrado" },
-        { status: 404 }
-      );
-    } else {
+    if (found !== undefined) {
       return NextResponse.json(
         { message: "Usuário encontrado", user: found },
         { status: 200 }
+      );
+    } else {
+      return NextResponse.json(
+        { message: "Usuário não encontrado" },
+        { status: 404 }
       );
     }
   } catch (error: any) {
