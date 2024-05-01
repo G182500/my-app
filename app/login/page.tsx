@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { User } from "@/app/interfaces/user";
+import { User } from "@/interfaces/user";
 import { useRouter } from "next/navigation";
 import { LogIn } from "lucide-react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -11,13 +11,14 @@ interface LoginForm {
 }
 
 export default function Login() {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>();
 
   const { register, reset, handleSubmit } = useForm<LoginForm>();
+  const router = useRouter();
 
-  //Autenticação
+
+  //Auth
   useEffect(() => {
     const authenticatedUser = localStorage.getItem("token");
     if (authenticatedUser) {
@@ -57,6 +58,7 @@ export default function Login() {
     setIsLoading(false);
   };
 
+  //container does not center itself automatically (mx-auto)
   return (
     <div className="flex bg-[#F2EFE5] container h-screen items-center justify-center mx-auto">
       {/*Card*/}

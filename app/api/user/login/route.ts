@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { User } from "@/app/interfaces/user";
+import { User } from "@/interfaces/user";
 import fs from "fs"; //Trabalhar com arquivos
 
 export async function GET(req: NextRequest) {}
@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     } = await req.json();
 
     //Acessar a simulação do banco de dados
-    const jsonData = fs.readFileSync("app/assets/json/users.json", "utf-8");
+    const jsonData = fs.readFileSync("assets/json/users.json", "utf-8");
     const data: User[] = JSON.parse(jsonData); //JSON to object
 
     //Pesquisar o usuário

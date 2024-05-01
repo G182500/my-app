@@ -1,3 +1,10 @@
+import DataTable from "@/components/data-table";
+
 export default function Home() {
-  return <div>Texto</div>;
+  return (
+    <div>
+      <DataTable />
+      Texto
+    </div>
+  )
 }
