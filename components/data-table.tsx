@@ -2,65 +2,57 @@
 /*
 import { User } from "@/interfaces/user"
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
-import { useState } from "react"
+import { useState } from "react"*/
+import type { ColumnDef } from "@tanstack/react-table";
 import {
-    ColumnDef,
-    ColumnFiltersState,
-    SortingState,
-    VisibilityState,
+    //ColumnDef,
+    //SortingState,
+    //VisibilityState,
     flexRender,
     getCoreRowModel,
-    getFilteredRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
+    //getFilteredRowModel,
+    //getPaginationRowModel,
+    //getSortedRowModel,
     useReactTable,
-} from "@tanstack/react-table"
+} from "@tanstack/react-table";
 
-export const columns: ColumnDef<User>[] = [
-    {
-        accessorKey: "status",
-        header: "Status",
-        cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("status")}</div>
-        ),
-    },
-    {
-        accessorKey: "email",
-        header: ({ column }) => {
-            return (
-                <button
-                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                >
-                    Email
-                    <ArrowUpDown className="ml-2 h-4 w-4" />
-                </button>
-            )
-        },
-        cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
-    },
-    {
-        accessorKey: "amount",
-        header: () => <div className="text-right">Amount</div>,
-        cell: ({ row }) => {
-            const amount = parseFloat(row.getValue("amount"))
+interface DataTableProps {
+    columns: ColumnDef<unknown>[];
+    data: unknown[];
+}
 
-            // Format the amount as a dollar amount
-            const formatted = new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "USD",
-            }).format(amount)
+export default function DataTable({ columns, data }: DataTableProps) {
+    const table = useReactTable({
+        columns: columns,
+        data: data,
+        getCoreRowModel: getCoreRowModel(),
+    })
 
-            return <div className="text-right font-medium">{formatted}</div>
-        },
-    },
-]
-
-export default function DataTable(props: {}) {
-    const [sorting, setSorting] = useState<SortingState>([])
-    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+    return (
+        <div>
+            <table>
+                <thead></thead>
+                <tbody>
+                    {table.getRowModel().rows.map((row) => (
+                        <tr key={row.id} data-state={row.getIsSelected() && "selected"}>
+                            {row.getVisibleCells().map((cell) => (
+                                <td key={cell.id}>
+                                    {flexRender(
+                                        cell.column.columnDef.cell,
+                                        cell.getContext()
+                                    )}
+                                </td>
+                            ))}
+                        </tr>))
+                    }
+                </tbody>
+            </table>
+        </div>
+    )
+    /*const [sorting, setSorting] = useState<SortingState>([])
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
     const [rowSelection, setRowSelection] = useState({})
-
+    
     const table = useReactTable({
         data: data,
         columns,
@@ -79,7 +71,7 @@ export default function DataTable(props: {}) {
             rowSelection,
         },
     })
-
+    
     return (
         <div className="w-full">
             <div className="flex items-center py-4">
@@ -129,7 +121,7 @@ export default function DataTable(props: {}) {
                 </div>
             </div>
         </div >
-    )
+    )*/
 }
-*/
+
 //npm install @tanstack/react-table

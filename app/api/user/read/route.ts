@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
 
         if (userSearch) { //userSearch != ""
             const upperCase = userSearch.toUpperCase();
+
             const found = data.filter((user) => {
                 const upperName = user.name.toUpperCase();
                 return upperName.includes(upperCase);
