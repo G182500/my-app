@@ -12,8 +12,10 @@ export async function POST(req: NextRequest) {
         const data: User[] = JSON.parse(jsonData);
 
         if (userSearch) { //userSearch != ""
+            const upperCase = userSearch.toUpperCase();
             const found = data.filter((user) => {
-                return user.name.includes(userSearch);
+                const upperName = user.name.toUpperCase();
+                return upperName.includes(upperCase);
             });
 
             if (found.length === 0) {
