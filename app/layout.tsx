@@ -17,7 +17,11 @@ export default function RootLayout({
   //container does not center itself automatically (mx-auto)
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="container h-screen mx-auto">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

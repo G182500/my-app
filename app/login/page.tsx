@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { User } from "@/interfaces/user";
+import { Session } from "@/interfaces/user";
 import { useRouter } from "next/navigation";
 import { LogIn } from "lucide-react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -16,7 +16,6 @@ export default function Login() {
 
   const { register, reset, handleSubmit } = useForm<LoginForm>();
   const router = useRouter();
-
 
   //Auth
   useEffect(() => {
@@ -39,13 +38,13 @@ export default function Login() {
         body: JSON.stringify(data),
       });
 
-      const { message, user }: { message: string; user: User } =
+      const { message, session }: { message: string; session: Session } =
         await response.json();
 
       if (response.status === 200) {
         //disponível em console.log -> application
-        localStorage.setItem("userId", user.user.id);
-        localStorage.setItem("token", user.token);
+        localStorage.setItem("userId", session.user.id);
+        localStorage.setItem("token", session.token);
         void router.push("/");
       } else {
         setMessage(message);
@@ -60,7 +59,7 @@ export default function Login() {
 
   //container does not center itself automatically (mx-auto)
   return (
-    <div className="flex bg-[#F2EFE5] container h-screen items-center justify-center mx-auto">
+    <div className="flex container h-screen items-center justify-center mx-auto">
       {/*Card*/}
       <form
         className="flex flex-col bg-white shadow-lg p-5 rounded-lg w-60"

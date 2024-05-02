@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { User } from "@/interfaces/user";
 import fs from "fs"; //Trabalhar com arquivos
 
-export async function GET(req: NextRequest) {}
+export async function GET(req: NextRequest) { }
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,12 +20,14 @@ export async function POST(req: NextRequest) {
     const data: User[] = JSON.parse(jsonData); //JSON to object
 
     //Pesquisar o usuário
-    const found = data.find(({ user }) => {
+    const found = data.find((user) => {
       return user.user === userInput && user.password === passwordInput;
     });
     if (found !== undefined) {
+      const token = "3A762K4"; //Gerar token aleatorio
+
       return NextResponse.json(
-        { message: "Usuário encontrado", user: found },
+        { message: "Usuário encontrado", session: { token, user: found } },
         { status: 200 }
       );
     } else {

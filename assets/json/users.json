@@ -1,11 +1,8 @@
 [
     {
-        "token": "123",
-        "user": {
-            "id": "2751649",
-            "user": "g182500",
-            "password": "senha123",
-            "name": "Gabriel Santos Bueno"
-        }
+        "id": "2751649",
+        "user": "g182500",
+        "password": "senha123",
+        "name": "Gabriel Santos Bueno"
     }
 ]
