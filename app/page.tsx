@@ -1,6 +1,6 @@
 "use client";
 
-import DataTable from "@/components/data-table";
+import { DataTable } from "@/components/data-table";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { User } from "@/interfaces/user";
 import { useEffect, useState } from "react";
@@ -15,22 +15,22 @@ const columns: ColumnDef<User>[] = [
   {
     accessorKey: "id",
     header: "Id",
-    cell: ({ row }) => (
-      <div>{row.original.id}</div>
-    ),
+    cell: ({ row }) => <div>{row.original.id}</div>,
   },
   {
     accessorKey: "name",
     header: "Nome",
-    cell: ({ row }) => row.original.name
+    cell: ({ row }) => row.original.name,
   },
-]
+];
 
 export default function Home() {
   const { register, reset, handleSubmit } = useForm<SearchForm>();
   const [users, setUsers] = useState<User[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onSubmit: SubmitHandler<SearchForm> = async ({ search }) => {
+    setIsLoading(true);
     try {
       const response = await fetch("/api/user/read", {
         method: "POST",
@@ -46,6 +46,8 @@ export default function Home() {
       if (response.status === 200) setUsers(users);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -61,15 +63,12 @@ export default function Home() {
             placeholder="Busca por nome"
             {...register("search")}
           />
-          <button
-            className="bg-gray-400"
-            type="submit"
-          >
+          <button className="bg-gray-400" type="submit">
             <Search color="black" size={22} />
           </button>
         </div>
-        <DataTable columns={columns} data={users} />
+        <DataTable columns={columns} data={users} isLoading={isLoading} />
       </form>
     </div>
-  )
+  );
 }

@@ -1,127 +1,116 @@
-"use client"
+"use client";
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./ui/table";
 /*
 import { User } from "@/interfaces/user"
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
 import { useState } from "react"*/
 import type { ColumnDef } from "@tanstack/react-table";
 import {
-    //ColumnDef,
-    //SortingState,
-    //VisibilityState,
-    flexRender,
-    getCoreRowModel,
-    //getFilteredRowModel,
-    //getPaginationRowModel,
-    //getSortedRowModel,
-    useReactTable,
+  //ColumnDef,
+  //SortingState,
+  //VisibilityState,
+  flexRender,
+  getCoreRowModel,
+  //getFilteredRowModel,
+  //getPaginationRowModel,
+  //getSortedRowModel,
+  useReactTable,
 } from "@tanstack/react-table";
 
-interface DataTableProps {
-    columns: ColumnDef<unknown>[];
-    data: unknown[];
+interface DataTableProps<TData, TValue> {
+  columns: ColumnDef<TData>[];
+  data: TData[];
+  isLoading: boolean;
 }
 
-export default function DataTable({ columns, data }: DataTableProps) {
-    const table = useReactTable({
-        columns: columns,
-        data: data,
-        getCoreRowModel: getCoreRowModel(),
-    })
+export const DataTable = <TData, TValue>({
+  columns,
+  data,
+  isLoading,
+}: DataTableProps<TData, TValue>) => {
+  const table = useReactTable({
+    columns: columns,
+    data: data,
+    getCoreRowModel: getCoreRowModel(),
+  });
 
-    return (
-        <div>
-            <table>
-                <thead></thead>
-                <tbody>
-                    {table.getRowModel().rows.map((row) => (
-                        <tr key={row.id} data-state={row.getIsSelected() && "selected"}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id}>
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext()
-                                    )}
-                                </td>
-                            ))}
-                        </tr>))
-                    }
-                </tbody>
-            </table>
-        </div>
-    )
-    /*const [sorting, setSorting] = useState<SortingState>([])
-    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
-    const [rowSelection, setRowSelection] = useState({})
-    
-    const table = useReactTable({
-        data: data,
-        columns,
-        onSortingChange: setSorting,
-        onColumnFiltersChange: setColumnFilters,
-        getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-        getSortedRowModel: getSortedRowModel(),
-        getFilteredRowModel: getFilteredRowModel(),
-        onColumnVisibilityChange: setColumnVisibility,
-        onRowSelectionChange: setRowSelection,
-        state: {
-            sorting,
-            columnFilters,
-            columnVisibility,
-            rowSelection,
-        },
-    })
-    
-    return (
-        <div className="w-full">
-            <div className="flex items-center py-4">
-                <input
-                    placeholder="Filter emails..."
-                    value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-                    onChange={(event) =>
-                        table.getColumn("email")?.setFilterValue(event.target.value)
-                    }
-                    className="max-w-sm"
-                />
-            </div>
-            <div className="rounded-md border">
-                <table>
-                    {table.getRowModel().rows.map((row) => (
-                        <tr key={row.id} data-state={row.getIsSelected() && "selected"}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id}>
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext()
-                                    )}
-                                </td>
-                            ))}
-                        </tr>))
-                    }
-                </table>
-            </div>
-            <div className="flex items-center justify-end space-x-2 py-4">
-                <div className="flex-1 text-sm text-muted-foreground">
-                    {table.getFilteredSelectedRowModel().rows.length} of{" "}
-                    {table.getFilteredRowModel().rows.length} row(s) selected.
-                </div>
-                <div className="space-x-2">
-                    <button
-                        onClick={() => table.previousPage()}
-                        disabled={!table.getCanPreviousPage()}
-                    >
-                        Previous
-                    </button>
-                    <button
-                        onClick={() => table.nextPage()}
-                        disabled={!table.getCanNextPage()}
-                    >
-                        Next
-                    </button>
-                </div>
-            </div>
-        </div >
-    )*/
-}
+  return (
+    <div className="border rounded-md shadow-md w-full">
+      <Table>
+        <TableHeader className="bg-gray-800">
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => {
+                return (
+                  <TableHead key={header.id} className="h-9">
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                );
+              })}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody>
+          {isLoading ? (
+            <TableRow key="loadingTr">
+              <TableCell key="loadingTd" colSpan={columns.length}>
+                Carregando...
+              </TableCell>
+            </TableRow>
+          ) : null}
+
+          {!isLoading &&
+            table.getRowModel().rows.length > 0 &&
+            table.getRowModel().rows.map((row) => (
+              <TableRow
+                className="border-collapse border-b border-dark-50 hover:bg-gray-50"
+                key={row.id}
+                data-state={row.getIsSelected() && "selected"}
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell key={cell.id} className="p-3 text-start">
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+
+          {!isLoading && table.getRowModel().rows.length === 0 && (
+            <TableRow>
+              <TableCell colSpan={columns.length} className="h-20 text-center">
+                Nenhum registro encontrado
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </div>
+  );
+  /*<TableFooter className="text-xs font-light text-primary">
+          <tr>
+            <th colSpan={columns.length}>
+              <Pagination
+                table={table}
+                totalElements={totalElements}
+                firstRecord={firstRecord}
+                lastRecord={lastRecord}
+              />
+            </th>
+          </tr>
+        </TableFooter> */
+};
 
 //npm install @tanstack/react-table
