@@ -32,16 +32,25 @@ export default function Home() {
   const onSubmit: SubmitHandler<SearchForm> = async ({ search }) => {
     setIsLoading(true);
     try {
-      const response = await fetch("/api/user/read", {
+      const response = await fetch("/api/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ nameFilter: search }),
       });
+      /*const response = await fetch("/api/user/read", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nameFilter: search }),
+      });*/
 
       const { message, users }: { message: string; users: User[] } =
         await response.json();
+
+      console.log(users);
 
       if (response.status === 200) setUsers(users);
     } catch (error) {
