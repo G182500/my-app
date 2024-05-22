@@ -20,14 +20,14 @@ const Menu = () => {
 	return (
 		<div className="flex bg-[#2e2e2e] justify-around py-3">
 			<div className="flex gap-8 items-center">
-				<Image src={logo.src} height={32} width={120} alt="logo" />
+				<Image src={logo.src} height={20} width={140} alt="logo" />
 				<input className="text-black text-sm w-64" placeholder="Buscar item" type="text" />
 			</div>
 			<div className="flex gap-5 items-center">
-				<MenuIcon />
-				<ShoppingCart />
+				<MenuIcon size={28} />
+				<ShoppingCart size={24} />
 				<div className="flex space-x-1">
-					<User />
+					<User size={24} />
 					<p>{firstName}</p>
 				</div>
 			</div>
