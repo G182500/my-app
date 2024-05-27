@@ -19,12 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex flex-col 2xl:flex-row">
+        <div className="flex flex-col">
           <Menu />
           {/*---Content---*/}
-          <div className="container mx-auto pt-4">
-            {children}
-          </div>
+          <div className="lg:container lg:mx-auto pt-4">{children}</div>
         </div>
       </body>
     </html>

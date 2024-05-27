@@ -1,39 +1,28 @@
-import { Product } from "@/interfaces/product"
+import { Product } from "@/interfaces/product";
+import Item from "./item";
 
 interface ItemsCardProps {
-	items: Product[];
+  title: string;
+  items: Product[];
 }
 
-const ItemsCard = ({ items }: ItemsCardProps) => {
-	return (
-		<div className="flex bg-[#2e2e2e] p-3 rounded-lg space-x-3 w-full">
-			{
-				items.map((item, index) => {
-					return (
-						<div className="flex flex-col bg-[#4f4f4f] w-64" key={`item${index}`}>
-							<p>
-								{item.title}
-							</p>
-							<p>
-								{item.price}
-							</p>
-						</div>
-					)
-				})
-			}
-		</div>
-	)
-}
+const ItemsCard = ({ title, items }: ItemsCardProps) => {
+  return (
+    <div className="flex flex-col bg-[#2e2e2e] p-3 rounded-lg space-y-3">
+      <div className="flex items-center justify-between">
+        <p className="font-semibold text-lg">{title}</p>
+        <p className="font-semibold opacity-80 text-sm underline underline-offset-4">
+          Ver tudo
+        </p>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+        {items.map((item, index) => {
+          return <Item content={item} key={`item${index}`} />;
+        })}
+      </div>
+    </div>
+  );
+};
 
 export default ItemsCard;
-
-/*items.forEach((item) => {
-					return (
-						<div className="flex flex-col bg-[#6f6f6f]">
-							<p>
-								{item.title}
-							</p>
-							<p>{item.price}</p>
-						</div>
-					)
-				}) */

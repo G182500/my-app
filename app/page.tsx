@@ -1,21 +1,35 @@
 import ItemsCard from "@/components/items-card";
 
 const items = [
-  { id: "1234", title: "Item1", description: "Descricao muito louca", price: 59.90 },
-  { id: "3456", title: "Item2", description: "Descricao normal", price: 99.90 },
-  { id: "7891", title: "Item1", description: "Descricao muito louca", price: 59.90 },
-  { id: "2345", title: "Item2", description: "Descricao normal", price: 99.90 }
-]
+  {
+    id: "1234",
+    title: "Disco Herzeleid (1995) - Rammstein",
+    description: "Descricao muito louca",
+    price: 59.9,
+  },
+  {
+    id: "3456",
+    title: "Disco Skills In Pills (2015) - Lindemann",
+    description: "Descricao normal",
+    price: 99.9,
+  },
+  {
+    id: "7891",
+    title: "Disco All Hope Is Gone (2008) - Slipknot",
+    description: "Descricao muito louca",
+    price: 59.9,
+  },
+  { id: "2345", title: "Item2", description: "Descricao normal", price: 99.9 },
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-cols-1 gap-4 w-full">
-      <ItemsCard items={items} />
-      <ItemsCard items={items} />
-      <ItemsCard items={items} />
-      <ItemsCard items={items} />
+    <div className="grid grid-cols-1 gap-4">
+      <ItemsCard title="Produtos 1" items={items} />
+      <ItemsCard title="Produtos 2" items={items} />
+      <div className="bg-white">Footer</div>
     </div>
-  )
+  );
 }
 
 /*"use client";
