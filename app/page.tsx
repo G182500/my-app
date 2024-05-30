@@ -1,33 +1,36 @@
-import ItemsCard from "@/components/items-card";
+"use client"
 
-const items = [
-  {
-    id: "1234",
-    title: "Disco Herzeleid (1995) - Rammstein",
-    description: "Descricao muito louca",
-    price: 59.9,
-  },
-  {
-    id: "3456",
-    title: "Disco Skills In Pills (2015) - Lindemann",
-    description: "Descricao normal",
-    price: 99.9,
-  },
-  {
-    id: "7891",
-    title: "Disco All Hope Is Gone (2008) - Slipknot",
-    description: "Descricao muito louca",
-    price: 59.9,
-  },
-  { id: "2345", title: "Item2", description: "Descricao normal", price: 99.9 },
-];
+//import { useMutation } from "@tanstack/react-query";
+import { cookies } from 'next/headers';
+
+/*
+const cookieStore = cookies();
+cookieStore.set("userId", id);
+cookieStore.set("permission", permission);*/
+
 
 export default function Home() {
+
+  /*const loginMutation = useMutation({
+    mutationFn: (params) => {
+      return fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(params),
+      })
+    }
+  });
+  loginMutation.mutateAsync(loginParams);*/
+
+
   return (
-    <div className="grid grid-cols-1 gap-4">
+    <div className="flex flex-col gap-4">
+      {/*<div className="lg:container lg:mx-auto pt-4"></div>
       <ItemsCard title="Produtos 1" items={items} />
       <ItemsCard title="Produtos 2" items={items} />
-      <div className="bg-white">Footer</div>
+  <div className="bg-white">Footer</div>*/}
     </div>
   );
 }
