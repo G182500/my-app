@@ -1,40 +1,23 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useContext, useState } from "react";
 import { LogInIcon } from "lucide-react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { LoginParams, LoginResponse } from "../api/login/route";
+import { LoginParams } from "../api/login/route";
 import Card from "@/components/card";
+import { AuthContext } from "@/contexts/auth-provider";
 
 const Login = () => {
-  const router = useRouter();
+  const { signIn } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState<string>();
   const { register, reset, handleSubmit } = useForm<LoginParams>();
 
   const onSubmit: SubmitHandler<LoginParams> = async (data) => {
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.status === 200) {
-        const { data }: LoginResponse = await response.json();
-
-        localStorage.setItem("userId", data ? data.id : "");
-        localStorage.setItem("token", data ? data.permission : "");
-
-        void router.push("/");
-      } else {
-        const { message }: LoginResponse = await response.json();
-        setErrorMessage(message);
-        reset(); //Limpar campos
-      }
-    } catch (error: any) {
-      setErrorMessage(error.message);
+      await signIn(data);
+    } catch (error) {
+      //setErrorMessage("Deu ruim");
+      console.log(error)
+      reset();
     }
   };
 

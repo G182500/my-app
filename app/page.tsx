@@ -1,15 +1,13 @@
 "use client"
+import { AuthContext } from "@/contexts/auth-provider";
+import { useContext } from "react";
+import Image from "next/image";
 
 //import { useMutation } from "@tanstack/react-query";
-import { cookies } from 'next/headers';
-
-/*
-const cookieStore = cookies();
-cookieStore.set("userId", id);
-cookieStore.set("permission", permission);*/
-
 
 export default function Home() {
+  const { user } = useContext(AuthContext);
+  console.log(user)
 
   /*const loginMutation = useMutation({
     mutationFn: (params) => {
@@ -24,21 +22,24 @@ export default function Home() {
   });
   loginMutation.mutateAsync(loginParams);*/
 
-
   return (
-    <div className="flex flex-col gap-4">
-      {/*<div className="lg:container lg:mx-auto pt-4"></div>
-      <ItemsCard title="Produtos 1" items={items} />
-      <ItemsCard title="Produtos 2" items={items} />
-  <div className="bg-white">Footer</div>*/}
+    <div className="flex flex-col">
+      <div className="flex bg-zinc-900 items-center justify-around py-2">
+        <p className="font-bold">LOGO</p>
+        <div className="flex items-center">
+          <Image className="rounded-full" src="https://github.com/g182500.png" height={34} width={34} alt="avatar" />
+          <p>{user?.username}</p>
+        </div>
+      </div>
+      <div className="container mx-auto">
+        CONTEUDO
+      </div>
     </div>
   );
 }
 
-/*"use client";
- 
+/*
 import { DataTable } from "@/components/data-table";
-import { useForm, SubmitHandler } from "react-hook-form";
 import { User } from "@/interfaces/user";
 import { useEffect, useState } from "react";
 import { ColumnDef } from "@tanstack/react-table";
