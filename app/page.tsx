@@ -1,13 +1,14 @@
-"use client"
+"use client";
 import { AuthContext } from "@/contexts/auth-provider";
 import { useContext } from "react";
 import Image from "next/image";
+import ItemsCard from "@/components/items-card";
 
 //import { useMutation } from "@tanstack/react-query";
 
 export default function Home() {
   const { user } = useContext(AuthContext);
-  console.log(user)
+  console.log(user);
 
   /*const loginMutation = useMutation({
     mutationFn: (params) => {
@@ -27,12 +28,51 @@ export default function Home() {
       <div className="flex bg-zinc-900 items-center justify-around py-2">
         <p className="font-bold">LOGO</p>
         <div className="flex items-center">
-          <Image className="rounded-full" src="https://github.com/g182500.png" height={34} width={34} alt="avatar" />
+          <Image
+            className="rounded-full"
+            src="https://github.com/g182500.png"
+            height={34}
+            width={34}
+            alt="avatar"
+          />
           <p>{user?.username}</p>
         </div>
       </div>
-      <div className="container mx-auto">
-        CONTEUDO
+      <div className="container mx-auto space-y-2 sm:space-y-5">
+        <ItemsCard
+          title="Compact Disc"
+          items={[
+            {
+              id: "123456",
+              title: "Rammstein - Sehnsucht (1997)",
+              description: "Descrição do produto 1",
+              price: 59.9,
+            },
+            {
+              id: "456789",
+              title: "Rammstein - Herzeleid (1995)",
+              description: "Descrição do produto 2",
+              price: 20.9,
+            },
+          ]}
+        />
+        <ItemsCard
+          title="T-Shirts"
+          items={[
+            {
+              id: "123",
+              title: "Produto1",
+              description: "Descrição do produto 1",
+              price: 59.9,
+            },
+            {
+              id: "456",
+              title: "Produto2",
+              description: "Descrição do produto 2",
+              price: 20.9,
+            },
+          ]}
+        />
       </div>
     </div>
   );
