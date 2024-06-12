@@ -8,7 +8,7 @@ import ItemsCard from "@/components/items-card";
 
 export default function Home() {
   const { user } = useContext(AuthContext);
-  console.log(user);
+  console.log("user", user);
 
   /*const loginMutation = useMutation({
     mutationFn: (params) => {
@@ -38,19 +38,31 @@ export default function Home() {
           <p>{user?.username}</p>
         </div>
       </div>
-      <div className="container mx-auto space-y-2 sm:space-y-5">
+      <div className="container mx-auto space-y-3 sm:space-y-5">
         <ItemsCard
           title="Compact Disc"
           items={[
             {
               id: "123456",
-              title: "Rammstein - Sehnsucht (1997)",
+              title: "Sehnsucht Anniversary Edition (2023) Rammstein",
               description: "Descrição do produto 1",
               price: 59.9,
             },
             {
               id: "456789",
-              title: "Rammstein - Herzeleid (1995)",
+              title: "Iowa (2001) Slipknot",
+              description: "Descrição do produto 2",
+              price: 45,
+            },
+            {
+              id: "123",
+              title: "The Number Of The Beast (1982) Iron Maiden",
+              description: "Descrição do produto 1",
+              price: 59.9,
+            },
+            {
+              id: "456",
+              title: "Skills In Pills (2015) Lindemann",
               description: "Descrição do produto 2",
               price: 20.9,
             },
@@ -70,6 +82,12 @@ export default function Home() {
               title: "Produto2",
               description: "Descrição do produto 2",
               price: 20.9,
+            },
+            {
+              id: "123",
+              title: "Liebe ist für alle da (2009) Rammstein",
+              description: "Descrição do produto 1",
+              price: 59.9,
             },
           ]}
         />
