@@ -3,14 +3,14 @@ import { ImageIcon, ArrowRightCircle } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-interface ItemProps extends IProduct {
+interface ProductProps extends IProduct {
   oldPrice?: number;
 }
 
 /*bg-[#4682B4]*/
 /*Por exemplo, o nome do arquivo deve permanecer imutável e gerado aleatoriamente para evitar a sobreposição com outros arquivos, pois se não pudermos apontar para o arquivo no disco, basicamente o perderemos. Lembre-se de que você também precisará excluir o registro dos metadados se precisar excluir o arquivo. */
 
-const Item = ({ id, image, title, price, oldPrice }: ItemProps) => {
+const Product = ({ id, image, title, price, oldPrice }: ProductProps) => {
   const router = useRouter();
   const imgSize = "h-40 w-72 sm:h-56 sm:w-full";
 
@@ -87,4 +87,4 @@ const Item = ({ id, image, title, price, oldPrice }: ItemProps) => {
     </div>
 */
 
-export default Item;
+export default Product;

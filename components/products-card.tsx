@@ -1,12 +1,12 @@
 import { IProduct } from "@/interfaces/product";
 import Product from "./product";
 
-interface ItemsCardProps {
+interface ProductsCardProps {
   title: string;
   items: IProduct[];
 }
 
-const ItemsCard = ({ title, items }: ItemsCardProps) => {
+const ProductsCard = ({ title, items }: ProductsCardProps) => {
   return (
     <div className="flex flex-col bg-[#2e2e2e] p-4 md:rounded-lg space-y-4">
       <div className="flex items-center justify-between">
@@ -25,4 +25,4 @@ const ItemsCard = ({ title, items }: ItemsCardProps) => {
   );
 };
 
-export default ItemsCard;
+export default ProductsCard;
