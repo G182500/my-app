@@ -2,10 +2,7 @@
 import { AuthContext } from "@/contexts/auth-provider";
 import { useContext } from "react";
 import Image from "next/image";
-import ItemsCard from "@/components/items-card";
-import sehnsucht from "@/public/imgs/products/sehnsucht.jpg";
-import iowa from "@/public/imgs/products/iowa.jpeg";
-import pills from "@/public/imgs/products/skillspills.jpg";
+import ProductsCard from "@/components/products-card";
 
 //import { useMutation } from "@tanstack/react-query";
 
@@ -42,7 +39,7 @@ export default function Home() {
         </div>
       </div>
       <div className="container mx-auto space-y-4">
-        <ItemsCard
+        <ProductsCard
           title="Compact Discs"
           items={[
             {
@@ -60,13 +57,13 @@ export default function Home() {
               price: 45,
             },
             {
-              id: "123",
+              id: "234567",
               title: "The Number Of The Beast (1982) Iron Maiden",
               description: "Descrição do produto 1",
               price: 59.9,
             },
             {
-              id: "456",
+              id: "567890",
               image: "/imgs/products/skillspills.jpg",
               title: "Skills In Pills (2015) Lindemann",
               description: "Descrição do produto 2",
@@ -74,7 +71,7 @@ export default function Home() {
             },
           ]}
         />
-        <ItemsCard
+        <ProductsCard
           title="T-Shirts"
           items={[
             {
@@ -88,12 +85,6 @@ export default function Home() {
               title: "Produto2",
               description: "Descrição do produto 2",
               price: 20.9,
-            },
-            {
-              id: "123",
-              title: "Liebe ist für alle da (2009) Rammstein",
-              description: "Descrição do produto 1",
-              price: 59.9,
             },
           ]}
         />

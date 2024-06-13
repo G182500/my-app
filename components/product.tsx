@@ -1,12 +1,9 @@
+import { IProduct } from "@/interfaces/product";
 import { ImageIcon, ArrowRightCircle } from "lucide-react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-interface ItemProps {
-  image: StaticImageData;
-  id: string;
-  title: string;
-  price: number;
+interface ItemProps extends IProduct {
   oldPrice?: number;
 }
 
@@ -15,6 +12,7 @@ interface ItemProps {
 
 const Item = ({ id, image, title, price, oldPrice }: ItemProps) => {
   const router = useRouter();
+  const imgSize = "h-40 w-72 sm:h-56 sm:w-full";
 
   //Testes
   oldPrice = 99.9;
@@ -28,22 +26,20 @@ const Item = ({ id, image, title, price, oldPrice }: ItemProps) => {
       }}
     >
       {image ? (
-        <div className="relative h-40 w-72">
+        <div className={`relative ${imgSize}`}>
           <Image
             fill
             src={image}
             alt={title}
-            objectFit="cover"
-            className="absolute rounded-l-md"
+            className="absolute rounded-l-md object-cover sm:rounded-t-md sm:rounded-bl-none"
           />
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center h-40 w-72 sm:h-full sm:w-full">
-          <ImageIcon size={80} color="#9c9c9c" />
-          <p className="font-bold text-[#9c9c9c]">No image</p>
+        <div className={`flex flex-col items-center justify-center ${imgSize}`}>
+          <ImageIcon className="size-24 sm:size-36" color="#9c9c9c" />
         </div>
       )}
-      <div className="flex flex-col px-3 py-2 justify-around h-full w-full">
+      <div className="flex flex-col px-3 py-2 justify-around h-full w-full sm:h-40 sm:justify-between sm:py-3">
         <p className="font-semibold text-sm line-clamp-2">{title}</p>
 
         {/*Modelos de informações - Fazer componente de StatusLabel depois */}
@@ -70,7 +66,7 @@ const Item = ({ id, image, title, price, oldPrice }: ItemProps) => {
           <p className="font-semibold text-xl text-green-400">R$ {price}</p>
         )}
 
-        <button className="flex items-center justify-end gap-2">
+        <button className="flex items-center justify-end gap-2 sm:justify-center">
           <p className="font-semibold italic text-sm">View details</p>
           <ArrowRightCircle size={16} />
         </button>

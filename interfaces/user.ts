@@ -1,11 +1,11 @@
-export interface User {
+export interface IUser {
   id: string;
   user: string;
   password: string;
   name: string;
 }
 
-export interface Session {
+export interface ISession {
   token: string;
-  user: User;
+  user: IUser;
 }

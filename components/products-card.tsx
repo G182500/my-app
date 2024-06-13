@@ -1,9 +1,9 @@
-import { Product } from "@/interfaces/product";
-import Item from "./item";
+import { IProduct } from "@/interfaces/product";
+import Product from "./product";
 
 interface ItemsCardProps {
   title: string;
-  items: Product[];
+  items: IProduct[];
 }
 
 const ItemsCard = ({ title, items }: ItemsCardProps) => {
@@ -18,13 +18,7 @@ const ItemsCard = ({ title, items }: ItemsCardProps) => {
 
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-2 gap-x-2 gap-y-3">
         {items.map((item) => (
-          <Item
-            id={item.id}
-            image={item.image}
-            title={item.title}
-            price={item.price}
-            key={item.id}
-          />
+          <Product {...item} key={item.id} />
         ))}
       </div>
     </div>
