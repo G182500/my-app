@@ -47,14 +47,14 @@ export default function Home() {
           items={[
             {
               id: "123456",
-              image: sehnsucht,
+              image: "/imgs/products/sehnsucht.jpg",
               title: "Sehnsucht Anniversary Edition (2023) Rammstein",
               description: "Descrição do produto 1",
               price: 59.9,
             },
             {
               id: "456789",
-              image: iowa,
+              image: "/imgs/products/iowa.jpeg",
               title: "Iowa (2001) Slipknot",
               description: "Descrição do produto 2",
               price: 45,
@@ -67,7 +67,7 @@ export default function Home() {
             },
             {
               id: "456",
-              image: pills,
+              image: "/imgs/products/skillspills.jpg",
               title: "Skills In Pills (2015) Lindemann",
               description: "Descrição do produto 2",
               price: 20.9,

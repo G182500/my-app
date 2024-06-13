@@ -28,17 +28,19 @@ const Item = ({ id, image, title, price, oldPrice }: ItemProps) => {
       }}
     >
       {image ? (
-        <Image
-          height={image.height}
-          width={image.width}
-          src={image.src}
-          alt={title}
-          className="w-40 sm:h-full sm:w-full rounded-l-md object-cover object-center"
-        />
+        <div className="relative h-40 w-72">
+          <Image
+            fill
+            src={image}
+            alt={title}
+            objectFit="cover"
+            className="absolute rounded-l-md"
+          />
+        </div>
       ) : (
         <div className="flex flex-col items-center justify-center h-40 w-72 sm:h-full sm:w-full">
           <ImageIcon size={80} color="#9c9c9c" />
-          <p className="font-light">No image</p>
+          <p className="font-bold text-[#9c9c9c]">No image</p>
         </div>
       )}
       <div className="flex flex-col px-3 py-2 justify-around h-full w-full">
