@@ -32,7 +32,8 @@ const salutation = getSalutation();
 */
 
 const Menu = () => {
-  const { signIn, isAuthenticated } = useContext(AuthContext);
+  //const { signIn, isAuthenticated } = useContext(AuthContext);
+  const isAuthenticated = true;
 
   //const userId = localStorage.getItem("userId");
   //get userName by userId
@@ -41,17 +42,19 @@ const Menu = () => {
   //bg-[#2e2e2e]
 
   return (
-    <div className="flex bg-[#1d1d1d] justify-around p-3 w-full">
-      <div className="flex gap-4 items-center">
-        LOGO
-        <Input />
+    isAuthenticated && (
+      <div className="flex bg-[#1d1d1d] justify-around p-3 w-full">
+        <div className="flex gap-4 items-center">
+          LOGO
+          <Input />
+        </div>
+        <div className="hidden sm:flex gap-4 items-center">
+          <MenuIcon size={28} />
+          <ShoppingCart size={24} />
+          <User size={24} />
+        </div>
       </div>
-      <div className="hidden sm:flex gap-4 items-center">
-        <MenuIcon size={28} />
-        <ShoppingCart size={24} />
-        <User size={24} />
-      </div>
-    </div>
+    )
   );
 };
 
