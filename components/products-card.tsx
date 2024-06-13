@@ -10,7 +10,7 @@ const ProductsCard = ({ title, items }: ProductsCardProps) => {
   return (
     <div className="flex flex-col bg-[#2e2e2e] p-4 md:rounded-lg space-y-4">
       <div className="flex items-center justify-between">
-        <p className="font-semibold text-xl">{title}</p>
+        <p className="font-semibold text-lg">{title}</p>
         <p className="font-semibold opacity-90 text-sm underline underline-offset-4">
           Show all
         </p>
