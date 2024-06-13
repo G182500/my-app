@@ -57,12 +57,6 @@ export default function Home() {
               price: 45,
             },
             {
-              id: "234567",
-              title: "The Number Of The Beast (1982) Iron Maiden",
-              description: "Descrição do produto 1",
-              price: 59.9,
-            },
-            {
               id: "567890",
               image: "/imgs/products/skillspills.jpg",
               title: "Skills In Pills (2015) Lindemann",
