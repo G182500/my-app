@@ -16,7 +16,7 @@ const Login = () => {
       await signIn(data);
     } catch (error) {
       //setErrorMessage("Deu ruim");
-      console.log(error)
+      console.log(error);
       reset();
     }
   };
@@ -38,7 +38,11 @@ const Login = () => {
             type="password"
             {...register("password")}
           />
-          <div className={`flex items-center mt-3 ${errorMessage ? "justify-between" : "justify-end"}`}>
+          <div
+            className={`flex items-center mt-3 ${
+              errorMessage ? "justify-between" : "justify-end"
+            }`}
+          >
             {errorMessage && (
               <p className="font-semibold ml-2 text-red-400 text-xs">
                 {errorMessage}
@@ -50,10 +54,9 @@ const Login = () => {
           </div>
         </form>
       </Card>
-
     </div>
-  )
-}
+  );
+};
 export default Login;
 /*
 interface LoginForm {

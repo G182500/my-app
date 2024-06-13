@@ -24,65 +24,50 @@ export default function Home() {
   loginMutation.mutateAsync(loginParams);*/
 
   return (
-    <div className="flex flex-col">
-      <div className="flex bg-zinc-900 items-center justify-around py-2">
-        <p className="font-bold">LOGO</p>
-        <div className="flex items-center">
-          <Image
-            className="rounded-full"
-            src="https://github.com/g182500.png"
-            height={34}
-            width={34}
-            alt="avatar"
-          />
-          <p>{user?.username}</p>
-        </div>
-      </div>
-      <div className="container mx-auto space-y-4">
-        <ProductsCard
-          title="Compact Discs"
-          items={[
-            {
-              id: "123456",
-              image: "/imgs/products/sehnsucht.jpg",
-              title: "Sehnsucht Anniversary Edition (2023) Rammstein",
-              description: "Descrição do produto 1",
-              price: 59.9,
-            },
-            {
-              id: "456789",
-              image: "/imgs/products/iowa.jpeg",
-              title: "Iowa (2001) Slipknot",
-              description: "Descrição do produto 2",
-              price: 45,
-            },
-            {
-              id: "567890",
-              image: "/imgs/products/skillspills.jpg",
-              title: "Skills In Pills (2015) Lindemann",
-              description: "Descrição do produto 2",
-              price: 20.9,
-            },
-          ]}
-        />
-        <ProductsCard
-          title="T-Shirts"
-          items={[
-            {
-              id: "123",
-              title: "Produto1",
-              description: "Descrição do produto 1",
-              price: 59.9,
-            },
-            {
-              id: "456",
-              title: "Produto2",
-              description: "Descrição do produto 2",
-              price: 20.9,
-            },
-          ]}
-        />
-      </div>
+    <div className="container mx-auto space-y-4">
+      <ProductsCard
+        title="Compact Discs"
+        items={[
+          {
+            id: "123456",
+            image: "/imgs/products/sehnsucht.jpg",
+            title: "Sehnsucht Anniversary Edition (2023) Rammstein",
+            description: "Descrição do produto 1",
+            price: 59.9,
+          },
+          {
+            id: "456789",
+            image: "/imgs/products/iowa.jpeg",
+            title: "Iowa (2001) Slipknot",
+            description: "Descrição do produto 2",
+            price: 45,
+          },
+          {
+            id: "567890",
+            image: "/imgs/products/skillspills.jpg",
+            title: "Skills In Pills (2015) Lindemann",
+            description: "Descrição do produto 2",
+            price: 20.9,
+          },
+        ]}
+      />
+      <ProductsCard
+        title="T-Shirts"
+        items={[
+          {
+            id: "123",
+            title: "Produto1",
+            description: "Descrição do produto 1",
+            price: 59.9,
+          },
+          {
+            id: "456",
+            title: "Produto2",
+            description: "Descrição do produto 2",
+            price: 20.9,
+          },
+        ]}
+      />
     </div>
   );
 }
