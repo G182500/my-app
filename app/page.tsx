@@ -3,6 +3,9 @@ import { AuthContext } from "@/contexts/auth-provider";
 import { useContext } from "react";
 import Image from "next/image";
 import ItemsCard from "@/components/items-card";
+import sehnsucht from "@/assets/imgs/sehnsucht.jpg";
+import iowa from "@/assets/imgs/iowa.jpeg";
+import pills from "@/assets/imgs/skillspills.jpg";
 
 //import { useMutation } from "@tanstack/react-query";
 
@@ -40,16 +43,18 @@ export default function Home() {
       </div>
       <div className="container mx-auto space-y-3 sm:space-y-5">
         <ItemsCard
-          title="Compact Disc"
+          title="Compact Discs"
           items={[
             {
               id: "123456",
+              image: sehnsucht,
               title: "Sehnsucht Anniversary Edition (2023) Rammstein",
               description: "Descrição do produto 1",
               price: 59.9,
             },
             {
               id: "456789",
+              image: iowa,
               title: "Iowa (2001) Slipknot",
               description: "Descrição do produto 2",
               price: 45,
@@ -62,6 +67,7 @@ export default function Home() {
             },
             {
               id: "456",
+              image: pills,
               title: "Skills In Pills (2015) Lindemann",
               description: "Descrição do produto 2",
               price: 20.9,
