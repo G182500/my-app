@@ -3,9 +3,9 @@ import { AuthContext } from "@/contexts/auth-provider";
 import { useContext } from "react";
 import Image from "next/image";
 import ItemsCard from "@/components/items-card";
-import sehnsucht from "@/assets/imgs/sehnsucht.jpg";
-import iowa from "@/assets/imgs/iowa.jpeg";
-import pills from "@/assets/imgs/skillspills.jpg";
+import sehnsucht from "@/public/imgs/products/sehnsucht.jpg";
+import iowa from "@/public/imgs/products/iowa.jpeg";
+import pills from "@/public/imgs/products/skillspills.jpg";
 
 //import { useMutation } from "@tanstack/react-query";
 
@@ -41,7 +41,7 @@ export default function Home() {
           <p>{user?.username}</p>
         </div>
       </div>
-      <div className="container mx-auto space-y-3 sm:space-y-5">
+      <div className="container mx-auto space-y-4">
         <ItemsCard
           title="Compact Discs"
           items={[
