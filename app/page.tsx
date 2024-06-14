@@ -4,11 +4,16 @@ import { useContext } from "react";
 import ProductsCard from "@/components/products-card";
 import Menu from "@/components/menu";
 import Footer from "@/components/footer";
+import { useToast } from "@/components/ui/toaster/use-toast";
+import { Toaster } from "@/components/ui/toaster/toaster";
 
 //import { useMutation } from "@tanstack/react-query";
 
 export default function Home() {
   const { user } = useContext(AuthContext);
+
+  const { toast } = useToast();
+
   console.log("user", user);
 
   /*const loginMutation = useMutation({
@@ -96,6 +101,18 @@ export default function Home() {
             },
           ]}
         />
+        <Toaster />
+        <button
+          className="bg-[#4682B4] p-2 rounded-lg font-bold"
+          onClick={() =>
+            toast({
+              variant: "success",
+              title: "E-mail não encontrado",
+            })
+          }
+        >
+          Toast Trigger
+        </button>
       </div>
       <Footer />
     </>
