@@ -1,9 +1,9 @@
 "use client";
 import { AuthContext } from "@/contexts/auth-provider";
 import { useContext } from "react";
-import Image from "next/image";
 import ProductsCard from "@/components/products-card";
 import Menu from "@/components/menu";
+import Footer from "@/components/footer";
 
 //import { useMutation } from "@tanstack/react-query";
 
@@ -58,7 +58,7 @@ export default function Home() {
           title="T-Shirts"
           items={[
             {
-              id: "123",
+              id: "789",
               title: "Produto1",
               description: "Descrição do produto 1",
               price: 59.9,
@@ -71,7 +71,33 @@ export default function Home() {
             },
           ]}
         />
+        <ProductsCard
+          title="Movies"
+          items={[
+            {
+              id: "987432",
+              image: "/imgs/products/ausberlin.jpeg",
+              title: "Live aus Berlin (1999) Rammstein",
+              description: "Descrição do produto 2",
+              price: 59.9,
+            },
+            {
+              id: "654321",
+              image: "/imgs/products/daygusano.jpg",
+              title: "Day of the Gusano: Live in Mexico (2017) Slipknot",
+              description: "Descrição do produto 1",
+              price: 59.9,
+            },
+            {
+              id: "654",
+              title: "Produto3",
+              description: "Descrição do produto 2",
+              price: 20.9,
+            },
+          ]}
+        />
       </div>
+      <Footer />
     </>
   );
 }

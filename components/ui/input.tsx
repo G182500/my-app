@@ -4,11 +4,11 @@ const Input = () => {
   return (
     <div className="relative flex items-center">
       <input
-        className="block p-1 pl-2 rounded-lg text-black text-sm md:w-80"
-        placeholder="Buscar item"
+        className="bg-[#424242] placeholder:italic font-semibold p-1 pl-2 rounded-lg text-sm text-white placeholder-gray-300"
+        placeholder="Search product"
         type="text"
       />
-      <Search className="absolute end-2" color="#2e2e2e93" size={18} />
+      <Search className="absolute end-3" color="white" size={18} />
     </div>
   );
 };
