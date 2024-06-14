@@ -7,8 +7,24 @@ interface ProductProps extends IProduct {
   oldPrice?: number;
 }
 
+/*Tabela "Produtos":
+ID (chave primária)
+Nome
+Descrição
+Outros atributos relevantes do produto
+
+Tabela "Promoções":
+ID (chave primária)
+ID do Produto (chave estrangeira referenciando a tabela "Produtos")
+Preço Antigo
+Preço Novo
+Data de Início
+Data de Término
+Outros atributos relevantes da promoção*/
+
 /*bg-[#4682B4]*/
-/*Por exemplo, o nome do arquivo deve permanecer imutável e gerado aleatoriamente para evitar a sobreposição com outros arquivos, pois se não pudermos apontar para o arquivo no disco, basicamente o perderemos. Lembre-se de que você também precisará excluir o registro dos metadados se precisar excluir o arquivo. */
+/*O nome do arquivo deve permanecer imutável e gerado aleatoriamente para evitar a sobreposição com outros arquivos,
+se não pudermos apontar para o arquivo no disco, basicamente o perderemos. Lembre-se de que você também precisará excluir o registro dos metadados se precisar excluir o arquivo. */
 
 const Product = ({ id, image, title, price, oldPrice }: ProductProps) => {
   const router = useRouter();
@@ -74,17 +90,5 @@ const Product = ({ id, image, title, price, oldPrice }: ProductProps) => {
     </div>
   );
 };
-
-/*
-<div className="flex flex-col bg-[#4f4f4f] rounded-lg">
-      <div className="bg-white h-52 rounded-t-lg">Imagem</div>
-      <div className="flex flex-col p-2">
-        <p className="font-medium">{content.title}</p>
-        <p className="font-semibold text-lg text-green-400">
-          R$ {content.price}
-        </p>
-      </div>
-    </div>
-*/
 
 export default Product;

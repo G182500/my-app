@@ -3,6 +3,7 @@ import { AuthContext } from "@/contexts/auth-provider";
 import { useContext } from "react";
 import Image from "next/image";
 import ProductsCard from "@/components/products-card";
+import Menu from "@/components/menu";
 
 //import { useMutation } from "@tanstack/react-query";
 
@@ -24,51 +25,54 @@ export default function Home() {
   loginMutation.mutateAsync(loginParams);*/
 
   return (
-    <div className="container mx-auto space-y-4">
-      <ProductsCard
-        title="Compact Discs"
-        items={[
-          {
-            id: "123456",
-            image: "/imgs/products/sehnsucht.jpg",
-            title: "Sehnsucht Anniversary Edition (2023) Rammstein",
-            description: "Descrição do produto 1",
-            price: 59.9,
-          },
-          {
-            id: "456789",
-            image: "/imgs/products/iowa.jpeg",
-            title: "Iowa (2001) Slipknot",
-            description: "Descrição do produto 2",
-            price: 45,
-          },
-          {
-            id: "567890",
-            image: "/imgs/products/skillspills.jpg",
-            title: "Skills In Pills (2015) Lindemann",
-            description: "Descrição do produto 2",
-            price: 20.9,
-          },
-        ]}
-      />
-      <ProductsCard
-        title="T-Shirts"
-        items={[
-          {
-            id: "123",
-            title: "Produto1",
-            description: "Descrição do produto 1",
-            price: 59.9,
-          },
-          {
-            id: "456",
-            title: "Produto2",
-            description: "Descrição do produto 2",
-            price: 20.9,
-          },
-        ]}
-      />
-    </div>
+    <>
+      <Menu />
+      <div className="container mx-auto space-y-1 pt-14 sm:pt-16 sm:space-y-3">
+        <ProductsCard
+          title="Compact Discs"
+          items={[
+            {
+              id: "123456",
+              image: "/imgs/products/sehnsucht.jpg",
+              title: "Sehnsucht Anniversary Edition (2023) Rammstein",
+              description: "Descrição do produto 1",
+              price: 59.9,
+            },
+            {
+              id: "456789",
+              image: "/imgs/products/iowa.jpeg",
+              title: "Iowa (2001) Slipknot",
+              description: "Descrição do produto 2",
+              price: 45,
+            },
+            {
+              id: "567890",
+              image: "/imgs/products/skillspills.jpg",
+              title: "Skills In Pills (2015) Lindemann",
+              description: "Descrição do produto 2",
+              price: 20.9,
+            },
+          ]}
+        />
+        <ProductsCard
+          title="T-Shirts"
+          items={[
+            {
+              id: "123",
+              title: "Produto1",
+              description: "Descrição do produto 1",
+              price: 59.9,
+            },
+            {
+              id: "456",
+              title: "Produto2",
+              description: "Descrição do produto 2",
+              price: 20.9,
+            },
+          ]}
+        />
+      </div>
+    </>
   );
 }
 

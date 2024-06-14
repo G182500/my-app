@@ -43,7 +43,7 @@ const Menu = () => {
 
   return (
     isAuthenticated && (
-      <div className="flex bg-[#1d1d1d] justify-around p-3 w-full">
+      <div className="flex bg-[#1d1d1d] justify-around p-3 w-full fixed z-10">
         <div className="flex gap-4 items-center">
           LOGO
           <Input />
