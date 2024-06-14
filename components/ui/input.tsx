@@ -1,10 +1,15 @@
 import { Search } from "lucide-react";
 
-const Input = () => {
+import { cn } from "@/utils/cn";
+
+const Input = ({ className }: { className?: string }) => {
   return (
     <div className="relative flex items-center">
       <input
-        className="bg-[#424242] font-semibold p-1 pl-2 rounded-lg text-sm text-gray-200 placeholder-gray-400"
+        className={cn(
+          "bg-[#424242] font-semibold p-1 pl-2 rounded-lg text-sm text-gray-200 placeholder-gray-400",
+          className
+        )}
         placeholder="Search product"
         type="text"
       />

@@ -4,15 +4,11 @@ import { useContext } from "react";
 import ProductsCard from "@/components/products-card";
 import Menu from "@/components/menu";
 import Footer from "@/components/footer";
-import { useToast } from "@/components/ui/toaster/use-toast";
-import { Toaster } from "@/components/ui/toaster/toaster";
 
 //import { useMutation } from "@tanstack/react-query";
 
 export default function Home() {
   const { user } = useContext(AuthContext);
-
-  const { toast } = useToast();
 
   console.log("user", user);
 
@@ -32,7 +28,7 @@ export default function Home() {
   return (
     <>
       <Menu />
-      <div className="container mx-auto space-y-1 pt-14 sm:pt-16 sm:space-y-3">
+      <div className="container mx-auto space-y-2 pt-16 sm:pt-[68px] sm:space-y-3">
         <ProductsCard
           title="Compact Discs"
           items={[
@@ -101,18 +97,6 @@ export default function Home() {
             },
           ]}
         />
-        <Toaster />
-        <button
-          className="bg-[#4682B4] p-2 rounded-lg font-bold"
-          onClick={() =>
-            toast({
-              variant: "success",
-              title: "E-mail não encontrado",
-            })
-          }
-        >
-          Toast Trigger
-        </button>
       </div>
       <Footer />
     </>
