@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+
 //import logo from "@/assets/imgs/lindemann-logo.png";
 import { MenuIcon, ShoppingCart, CircleUserRound } from "lucide-react";
 import Input from "./ui/input";
@@ -56,12 +56,12 @@ const Menu = () => {
     isAuthenticated && (
       <div className="flex bg-[#1d1d1d] justify-around p-3 w-full fixed z-10">
         <div className="flex gap-4 items-center">
-          <p className="text-2xl">LOGO</p>
-          <Input className="w-52 sm:w-72" />
+          <p className="text-2xl">LOGOO</p>
+          <Input className="w-60 sm:w-80" />
         </div>
         <div className="flex gap-3 items-center">
           <div className="hidden sm:flex bg-[#424242] rounded-xl gap-1 items-center pr-3">
-            <CircleUserRound size={28} />
+            <CircleUserRound className="h-full" />
             <p className="font-semibold">{userName}</p>
           </div>
           <Toaster />
