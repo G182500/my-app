@@ -10,8 +10,8 @@ const ProductsCard = ({ title, items }: ProductsCardProps) => {
   return (
     <div className="flex flex-col bg-[#1d1d1d] p-4 space-y-4 sm:rounded-lg">
       <div className="flex items-center justify-between">
-        <p className="font-semibold text-lg">{title}</p>
-        <p className="font-semibold opacity-70 text-sm underline underline-offset-4 hover:cursor-pointer hover:opacity-100">
+        <p className="font-semibold text-lg md:text-2xl">{title}</p>
+        <p className="font-semibold opacity-70 text-sm underline underline-offset-4 md:text-base hover:cursor-pointer hover:opacity-100">
           Show all
         </p>
       </div>

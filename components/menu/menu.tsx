@@ -79,29 +79,6 @@ const Menu = () => {
   </div>  
 */
 
-  const menuLinks = [
-    {
-      title: "Menu",
-      links: [
-        { label: "Home", icon: <HomeIcon size={20} />, route: "/" },
-        { label: "Cart", icon: <ShoppingCart size={20} />, route: "/cart" },
-        { label: "Profile", icon: <User size={20} />, route: "/profile" },
-      ],
-    },
-    {
-      title: "Admin",
-      links: [
-        { label: "Create", icon: <SquarePlus size={20} />, route: "/create" },
-        {
-          label: "Inventary",
-          icon: <GalleryVerticalEnd size={20} />,
-          route: "/inventary",
-        },
-        { label: "Users", icon: <Users size={20} />, route: "/users" },
-      ],
-    },
-  ];
-
   return (
     isAuthenticated && (
       <div className="flex bg-[#1d1d1d] justify-around p-3 w-full fixed z-10">
@@ -111,10 +88,10 @@ const Menu = () => {
         </div>
         <div className="flex gap-3 items-center">
           <div className="hidden md:flex bg-[#424242] rounded-xl gap-1 items-center pr-3">
-            <CircleUserRound className="h-full" />
-            <p className="font-semibold">{userName}</p>
+            <CircleUserRound size={28} />
+            <p className="font-semibold text-lg">{userName}</p>
           </div>
-          <PopoverMenu items={menuLinks} />
+          <PopoverMenu />
         </div>
       </div>
     )
