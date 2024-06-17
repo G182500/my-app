@@ -16,13 +16,13 @@ const PopoverMenu = ({ items }: { items: MenuItem[] }) => {
 
   return (
     <Popover>
-      <PopoverTrigger className="lg:hidden" asChild>
+      <PopoverTrigger className="lg:hidden hover:cursor-pointer" asChild>
         <MenuIcon size={28} />
       </PopoverTrigger>
-      <PopoverContent className="flex flex-col bg-[#505050] py-1 space-y-1 w-48 md:w-56">
+      <PopoverContent className="flex flex-col bg-[#505050] py-1 space-y-1 w-52 md:w-56">
         {items.map((item) => {
           return (
-            <div className="flex flex-col" key={item.title}>
+            <>
               <p className="font-medium pl-3 text-sm text-gray-300 md:text-base">
                 {item.title}
               </p>
@@ -43,7 +43,7 @@ const PopoverMenu = ({ items }: { items: MenuItem[] }) => {
                   );
                 })}
               </div>
-            </div>
+            </>
           );
         })}
         <Separator />
