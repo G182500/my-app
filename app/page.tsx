@@ -2,7 +2,7 @@
 import { AuthContext } from "@/contexts/auth-provider";
 import { useContext } from "react";
 import ProductsCard from "@/components/products-card";
-import Menu from "@/components/menu";
+import Menu from "@/components/menu/menu";
 import Footer from "@/components/footer";
 
 //import { useMutation } from "@tanstack/react-query";
