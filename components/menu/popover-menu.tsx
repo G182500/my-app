@@ -13,6 +13,9 @@ import {
   Users,
 } from "lucide-react";
 
+const linkClass = "flex gap-1 items-center py-1 pl-5 hover:bg-[#333333]";
+const paragraphClass = "font-medium text-gray-100 md:text-lg";
+
 const Separator = () => <div className="h-0.5 border-t border-gray-400"></div>;
 
 const PopoverMenu = () => {
@@ -29,26 +32,17 @@ const PopoverMenu = () => {
         </p>
         <Separator />
         <div className="flex flex-col">
-          <Link
-            href="/"
-            className="flex gap-1 items-center py-1 pl-5 hover:bg-[#333333]"
-          >
+          <Link href="/" className={linkClass}>
             <HomeIcon size={20} />
-            <p className="font-medium text-gray-100 md:text-lg">Home</p>
+            <p className={paragraphClass}>Home</p>
           </Link>
-          <Link
-            href="/cart"
-            className="flex gap-1 items-center py-1 pl-5 hover:bg-[#333333]"
-          >
+          <Link href="/cart" className={linkClass}>
             <ShoppingCart size={20} />
-            <p className="font-medium text-gray-100 md:text-lg">Cart</p>
+            <p className={paragraphClass}>Cart</p>
           </Link>
-          <Link
-            href="/profile"
-            className="flex gap-1 items-center py-1 pl-5 hover:bg-[#333333]"
-          >
+          <Link href="/profile" className={linkClass}>
             <User size={20} />
-            <p className="font-medium text-gray-100 md:text-lg">Profile</p>
+            <p className={paragraphClass}>Profile</p>
           </Link>
         </div>
         {admin && (
@@ -58,36 +52,25 @@ const PopoverMenu = () => {
             </p>
             <Separator />
             <div className="flex flex-col">
-              <Link
-                href="/create"
-                className="flex gap-1 items-center py-1 pl-5 hover:bg-[#333333]"
-              >
+              <Link href="/create" className={linkClass}>
                 <SquarePlus size={20} />
-                <p className="font-medium text-gray-100 md:text-lg">Create</p>
+                <p className={paragraphClass}>Create</p>
               </Link>
-              <Link
-                href="/inventary"
-                className="flex gap-1 items-center py-1 pl-5 hover:bg-[#333333]"
-              >
+              <Link href="/inventary" className={linkClass}>
                 <GalleryVerticalEnd size={20} />
-                <p className="font-medium text-gray-100 md:text-lg">
-                  Inventary
-                </p>
+                <p className={paragraphClass}>Inventary</p>
               </Link>
-              <Link
-                href="/users"
-                className="flex gap-1 items-center py-1 pl-5 hover:bg-[#333333]"
-              >
+              <Link href="/users" className={linkClass}>
                 <Users size={20} />
-                <p className="font-medium text-gray-100 md:text-lg">Users</p>
+                <p className={paragraphClass}>Users</p>
               </Link>
             </div>
           </>
         )}
         <Separator />
-        <div className="flex gap-1 items-center justify-center hover:cursor-pointer hover:bg-[#333333]">
+        <div className={linkClass}>
           <LogOut size={20} />
-          <p className="font-medium text-gray-100 md:text-lg">Exit</p>
+          <p className={paragraphClass}>Exit</p>
         </div>
       </PopoverContent>
     </Popover>
