@@ -3,7 +3,6 @@ import { useContext, useState } from "react";
 import { LogInIcon } from "lucide-react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { LoginParams } from "../api/login/route";
-import Card from "@/components/card";
 import { AuthContext } from "@/contexts/auth-provider";
 
 const Login = () => {
@@ -23,37 +22,35 @@ const Login = () => {
 
   return (
     <div className="flex h-screen items-center justify-center sm:container sm:mx-auto">
-      <Card>
-        <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-          <p className="font-semibold mb-3">Bem vindo de volta!</p>
-          <input
-            className="mb-2 px-2 py-1 rounded-md text-black text-sm"
-            placeholder="Nome de usuário"
-            type="text"
-            {...register("username")}
-          />
-          <input
-            className="px-2 py-1 rounded-md text-black text-sm"
-            placeholder="Senha"
-            type="password"
-            {...register("password")}
-          />
-          <div
-            className={`flex items-center mt-3 ${
-              errorMessage ? "justify-between" : "justify-end"
-            }`}
-          >
-            {errorMessage && (
-              <p className="font-semibold ml-2 text-red-400 text-xs">
-                {errorMessage}
-              </p>
-            )}
-            <button className="flex font-semibold bg-green-700 gap-1 px-3 py-1 rounded-md text-xs w-fit">
-              <LogInIcon size={16} /> Entrar
-            </button>
-          </div>
-        </form>
-      </Card>
+      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+        <p className="font-semibold mb-3">Bem vindo de volta!</p>
+        <input
+          className="mb-2 px-2 py-1 rounded-md text-black text-sm"
+          placeholder="Nome de usuário"
+          type="text"
+          {...register("username")}
+        />
+        <input
+          className="px-2 py-1 rounded-md text-black text-sm"
+          placeholder="Senha"
+          type="password"
+          {...register("password")}
+        />
+        <div
+          className={`flex items-center mt-3 ${
+            errorMessage ? "justify-between" : "justify-end"
+          }`}
+        >
+          {errorMessage && (
+            <p className="font-semibold ml-2 text-red-400 text-xs">
+              {errorMessage}
+            </p>
+          )}
+          <button className="flex font-semibold bg-green-700 gap-1 px-3 py-1 rounded-md text-xs w-fit">
+            <LogInIcon size={16} /> Entrar
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

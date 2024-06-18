@@ -38,7 +38,7 @@ const Product = ({ id, image, title, price, oldPrice }: ProductProps) => {
       title={title}
       className="flex sm:flex-col bg-[#424242] rounded-md hover:opacity-70 hover:cursor-pointer"
       onClick={() => {
-        router.push(`/${id}`);
+        router.push(`/product/${id}`);
       }}
     >
       {image ? (
