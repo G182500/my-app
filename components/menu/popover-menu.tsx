@@ -1,5 +1,3 @@
-import { AuthContext } from "@/contexts/auth-provider";
-import { ReactNode, useContext } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import Link from "next/link";
 import {
@@ -12,17 +10,24 @@ import {
   User,
   Users,
 } from "lucide-react";
+import { useState } from "react";
 
-const linkClass = "flex gap-1 items-center py-1 pl-5 hover:bg-[#333333]";
+const linkClass =
+  "flex gap-1 items-center py-1 pl-5 hover:bg-[#333333] hover:cursor-pointer";
 const paragraphClass = "font-medium text-gray-100 md:text-lg";
 
 const Separator = () => <div className="h-0.5 border-t border-gray-400"></div>;
 
 const PopoverMenu = () => {
-  const admin = true;
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const openChange = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const admin = false;
 
   return (
-    <Popover>
+    <Popover open={isOpen} onOpenChange={openChange}>
       <PopoverTrigger className="lg:hidden hover:cursor-pointer" asChild>
         <MenuIcon size={30} />
       </PopoverTrigger>
@@ -31,7 +36,7 @@ const PopoverMenu = () => {
           Menu
         </p>
         <Separator />
-        <div className="flex flex-col">
+        <div className="flex flex-col" onClick={openChange}>
           <Link href="/" className={linkClass}>
             <HomeIcon size={20} />
             <p className={paragraphClass}>Home</p>
@@ -51,7 +56,7 @@ const PopoverMenu = () => {
               Admin
             </p>
             <Separator />
-            <div className="flex flex-col">
+            <div className="flex flex-col" onClick={openChange}>
               <Link href="/create" className={linkClass}>
                 <SquarePlus size={20} />
                 <p className={paragraphClass}>Create</p>
@@ -68,7 +73,7 @@ const PopoverMenu = () => {
           </>
         )}
         <Separator />
-        <div className={linkClass}>
+        <div className={linkClass} onClick={openChange}>
           <LogOut size={20} />
           <p className={paragraphClass}>Exit</p>
         </div>
