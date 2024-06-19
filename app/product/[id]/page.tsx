@@ -1,5 +1,4 @@
 "use client";
-
 import Input from "@/components/ui/input";
 import { AuthContext } from "@/contexts/auth-provider";
 import { useContext, useEffect, useState } from "react";
@@ -27,7 +26,7 @@ const ProductDetail = () => {
   });
 
   const { register, reset, handleSubmit, getValues, setValue } = useForm<{
-    amount: number;
+    quantity: number;
   }>();
 
   /*useEffect(() => {
@@ -37,9 +36,9 @@ const ProductDetail = () => {
   const isAuthenticated = true;
   let oldPrice = 99.9;
 
-  const onSubmit: SubmitHandler<{ amount: number }> = async (data) => {
+  const onSubmit: SubmitHandler<{ quantity: number }> = async (data) => {
     try {
-      console.log(data.amount);
+      console.log(data.quantity);
       //await signIn(data);
     } catch (error) {
       //setErrorMessage("Deu ruim");
@@ -53,12 +52,12 @@ const ProductDetail = () => {
       <div className="container mx-auto pt-16 sm:pt-[68px]">
         <div className="flex flex-col bg-[#1d1d1d] py-4 px-6 space-y-4 sm:rounded-lg">
           {product.image ? (
-            <div className="relative border-2 border-[#4e4e4e] self-center h-96 w-full">
+            <div className="relative border-2 border-[#4e4e4e] rounded-lg self-center h-96 w-full">
               <Image
                 fill
                 src={product.image}
                 alt={product.title}
-                className="absolute object-cover"
+                className="absolute object-cover rounded-md"
               />
             </div>
           ) : (
@@ -86,15 +85,15 @@ const ProductDetail = () => {
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="flex flex-col space-y-1">
-              <p className="font-semibold text-xs">AMOUNT</p>
+              <p className="font-semibold text-xs">QUANTITY</p>
               <AmountInput
                 increment={() =>
-                  setValue("amount", Number(getValues("amount")) + 1)
+                  setValue("quantity", Number(getValues("quantity")) + 1)
                 }
                 decrement={() =>
-                  setValue("amount", Number(getValues("amount")) - 1)
+                  setValue("quantity", Number(getValues("quantity")) - 1)
                 }
-                register={register("amount", { min: 1 })} //max: quantidade do produto
+                register={register("quantity", { min: 1 })} //max: quantidade do produto
               />
             </div>
             <button
