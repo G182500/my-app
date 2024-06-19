@@ -1,13 +1,10 @@
 "use client";
-import Input from "@/components/ui/input";
-import { AuthContext } from "@/contexts/auth-provider";
-import { useContext, useEffect, useState } from "react";
-import Link from "next/link";
 import { IProduct } from "@/interfaces/product";
 import Image from "next/image";
-import { ImageIcon, ShoppingCart, SquareMinus, SquarePlus } from "lucide-react";
+import { ImageIcon, ShoppingCart } from "lucide-react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import AmountInput from "@/components/amount-input";
+import QuantityInput from "@/components/quantity-input";
+import { useState } from "react";
 
 const getProductById = async (id: string) => {
   const response = await fetch(`/api/product/${id}`, {
@@ -28,6 +25,8 @@ const ProductDetail = () => {
   const { register, reset, handleSubmit, getValues, setValue } = useForm<{
     quantity: number;
   }>();
+
+  const quantity = Number(getValues("quantity"));
 
   /*useEffect(() => {
     getProductById("123").then(setProduct(resposta));
@@ -86,7 +85,7 @@ const ProductDetail = () => {
           >
             <div className="flex flex-col space-y-1">
               <p className="font-semibold text-xs">QUANTITY</p>
-              <AmountInput
+              <QuantityInput
                 increment={() =>
                   setValue("quantity", Number(getValues("quantity")) + 1)
                 }

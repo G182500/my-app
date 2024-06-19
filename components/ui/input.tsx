@@ -7,7 +7,7 @@ const Input = ({ className }: { className?: string }) => {
     <div className="relative flex items-center">
       <input
         className={cn(
-          "bg-[#424242] font-semibold p-1 pl-2 rounded-lg text-gray-200 placeholder-gray-400 placeholder:italic",
+          "bg-[#424242] font-medium p-1 pl-2 rounded-lg text-white placeholder-gray-400",
           className
         )}
         placeholder="Search product"

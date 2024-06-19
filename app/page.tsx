@@ -23,55 +23,7 @@ export default function Home() {
   });
   loginMutation.mutateAsync(loginParams);*/
 
-  return (
-    <div className="container mx-auto space-y-2 pt-16 sm:pt-[68px] sm:space-y-3">
-      <ProductsCard
-        title="Compact Discs"
-        items={[
-          {
-            id: "123456",
-            image: "/imgs/products/sehnsucht.jpg",
-            title: "Sehnsucht Anniversary Edition (2023) Rammstein",
-            description: "Descrição do produto 1",
-            price: 59.9,
-          },
-          {
-            id: "456789",
-            image: "/imgs/products/iowa.jpeg",
-            title: "Iowa (2001) Slipknot",
-            description: "Descrição do produto 2",
-            price: 45,
-          },
-          {
-            id: "567890",
-            image: "/imgs/products/skillspills.jpg",
-            title: "Skills In Pills (2015) Lindemann",
-            description: "Descrição do produto 2",
-            price: 20.9,
-          },
-        ]}
-      />
-      <ProductsCard
-        title="T-Shirts"
-        items={[
-          {
-            id: "789",
-            title: "Produto1",
-            description: "Descrição do produto 1",
-            price: 59.9,
-          },
-          {
-            id: "456",
-            title: "Produto2",
-            description: "Descrição do produto 2",
-            price: 20.9,
-          },
-        ]}
-      />
-      <ProductsCard
-        title="Movies"
-        items={[
-          {
+  /*{
             id: "987432",
             image: "/imgs/products/ausberlin.jpeg",
             title: "Live aus Berlin (1999) Rammstein",
@@ -90,9 +42,36 @@ export default function Home() {
             title: "Produto3",
             description: "Descrição do produto 2",
             price: 20.9,
+          }, 
+          
+          {
+            id: "123456",
+            imagesUrl: "/imgs/products/sehnsucht.jpg",
+            title: "Sehnsucht Anniversary Edition (2023) Rammstein",
+            description: "Descrição do produto 1",
+            price: 59.9,
           },
-        ]}
-      />
+          {
+            id: "456789",
+            imagesUrl: "/imgs/products/iowa.jpeg",
+            title: "Iowa (2001) Slipknot",
+            description: "Descrição do produto 2",
+            price: 45,
+          },
+          {
+            id: "567890",
+            image: "/imgs/products/skillspills.jpg",
+            title: "Skills In Pills (2015) Lindemann",
+            description: "Descrição do produto 2",
+            price: 20.9,
+          },
+          */
+
+  return (
+    <div className="container mx-auto space-y-2 pt-16 sm:pt-[68px] sm:space-y-3">
+      <ProductsCard title="Compact Discs" items={[]} />
+      <ProductsCard title="T-Shirts" items={[]} />
+      <ProductsCard title="Movies" items={[]} />
     </div>
   );
 }

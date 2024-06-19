@@ -1,14 +1,14 @@
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import Link from "next/link";
 import {
-  GalleryVerticalEnd,
+  ArrowLeftSquare,
+  ArrowRightCircle,
   HomeIcon,
-  LogOut,
+  Menu,
   MenuIcon,
   ShoppingCart,
-  SquarePlus,
   User,
-  Users,
+  X,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -18,15 +18,43 @@ const paragraphClass = "font-medium text-gray-100 md:text-lg";
 
 const Separator = () => <div className="h-0.5 border-t border-gray-400"></div>;
 
-const PopoverMenu = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const close = () => {
+const SideNavigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  let isOpenClass = isOpen ? "p-2 w-56" : " w-0 overflow-hidden";
+
+  const changeState = () => {
     setIsOpen(!isOpen);
   };
 
-  const admin = true;
-
   return (
+    <div className="flex">
+      {/*Trigger*/}
+      <div id="sidenav-trigger" onClick={changeState}>
+        <MenuIcon size={30} />
+      </div>
+      {/*SideNav*/}
+      <div
+        className={`bg-[#505050] top-0 left-0
+                    fixed h-screen
+                    duration-300 z-40
+                    ${isOpenClass}`}
+      >
+        {/* SideNav content */}
+        <div className="flex flex-col items-center">
+          <ArrowLeftSquare
+            size={32}
+            className="self-end"
+            onClick={changeState}
+          />
+          <p className="font-medium pl-3 text-sm text-gray-300 md:text-base">
+            Menu
+          </p>
+          <Separator />
+        </div>
+      </div>
+    </div>
+  );
+  /*
     <Popover open={isOpen} onOpenChange={close}>
       <PopoverTrigger className="lg:hidden hover:cursor-pointer" asChild>
         <MenuIcon size={30} />
@@ -78,8 +106,7 @@ const PopoverMenu = () => {
           <p className={paragraphClass}>Exit</p>
         </div>
       </PopoverContent>
-    </Popover>
-  );
+    </Popover>*/
 };
 
-export default PopoverMenu;
+export default SideNavigation;

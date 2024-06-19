@@ -7,7 +7,7 @@ interface AmountProps {
   decrement: () => void;
 }
 
-const AmountInput = ({ register, increment, decrement }: AmountProps) => {
+const QuantityInput = ({ register, increment, decrement }: AmountProps) => {
   return (
     <div className="flex bg-[#424242] items-center py-1 px-1 rounded-md space-x-3">
       <button type="button" onClick={decrement}>
@@ -26,4 +26,4 @@ const AmountInput = ({ register, increment, decrement }: AmountProps) => {
   );
 };
 
-export default AmountInput;
+export default QuantityInput;

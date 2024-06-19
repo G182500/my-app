@@ -12,14 +12,14 @@ import {
   GalleryVerticalEnd,
   Users,
 } from "lucide-react";
-import Input from "../ui/input";
+import Input from "./ui/input";
 import { AuthContext } from "@/contexts/auth-provider";
 import { useContext } from "react";
-import { Toaster } from "../ui/toaster/toaster";
-import { useToast } from "../ui/toaster/use-toast";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Toaster } from "./ui/toaster/toaster";
+import { useToast } from "./ui/toaster/use-toast";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import Link from "next/link";
-import PopoverMenu from "./popover-menu";
+import SideNavigation from "./menu/side-navigation";
 
 const getSalutation = () => {
   const hour = new Date().getHours();
@@ -46,7 +46,7 @@ const salutation = getSalutation();
 </div>
 */
 
-const Menu = () => {
+const Header = () => {
   //const { signIn, isAuthenticated } = useContext(AuthContext);
   const { toast } = useToast();
   /*
@@ -83,19 +83,17 @@ const Menu = () => {
     isAuthenticated && (
       <div className="flex bg-[#1d1d1d] justify-around p-3 w-full fixed z-10">
         <div className="flex gap-4 items-center">
+          <SideNavigation />
           <p className="text-2xl">LOGOO</p>
           <Input className="w-60 sm:w-80" />
         </div>
-        <div className="flex gap-3 items-center">
-          <div className="hidden md:flex bg-[#424242] rounded-xl gap-1 items-center pr-3">
-            <CircleUserRound size={28} />
-            <p className="font-semibold text-lg">{userName}</p>
-          </div>
-          <PopoverMenu />
-        </div>
+        {/*<div className="flex gap-3 items-center">
+          <CircleUserRound size={28} />
+          <p className="font-semibold text-lg">{userName}</p>
+        </div>*/}
       </div>
     )
   );
 };
 
-export default Menu;
+export default Header;
