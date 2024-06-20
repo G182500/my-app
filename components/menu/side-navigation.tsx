@@ -1,7 +1,5 @@
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import Link from "next/link";
 import {
-  ArrowLeftSquare,
   GalleryVerticalEnd,
   HomeIcon,
   MenuIcon,
@@ -21,7 +19,10 @@ const Separator = () => <div className="h-0.5 border-t border-gray-400"></div>;
 
 const SideNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  let isOpenClass = isOpen ? "p-2 w-56" : " w-0 overflow-hidden";
+
+  let sideNavClass = `bg-[#505050] top-0 left-0 fixed h-screen duration-300 z-40 ${
+    isOpen ? "p-2 w-56" : " w-0 overflow-hidden"
+  }`;
 
   const changeState = () => {
     setIsOpen(!isOpen);
@@ -30,25 +31,22 @@ const SideNavigation = () => {
   return (
     <div className="flex">
       {/*Trigger*/}
-      <div onClick={changeState}>
-        <MenuIcon size={30} />
-      </div>
+      <MenuIcon
+        className="hover:cursor-pointer"
+        size={30}
+        onClick={changeState}
+      />
       {/*SideNav*/}
-      <div
-        className={`bg-[#505050] top-0 left-0
-                    fixed h-screen
-                    duration-300 z-40
-                    ${isOpenClass}`}
-      >
+      <div className={sideNavClass}>
         {/* SideNav content */}
         <div
           className={`flex flex-col p-2 transition  ${
             isOpen ? "opacity-100 duration-1000" : "opacity-0 duration-0"
           }`}
         >
-          <ArrowLeftSquare
-            size={36}
-            className="self-end"
+          <X
+            size={28}
+            className="hover:cursor-pointer self-end"
             onClick={changeState}
           />
           <p className="font-medium pl-3 text-sm text-gray-300 md:text-base">
