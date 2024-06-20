@@ -2,19 +2,20 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import Link from "next/link";
 import {
   ArrowLeftSquare,
-  ArrowRightCircle,
+  GalleryVerticalEnd,
   HomeIcon,
-  Menu,
   MenuIcon,
   ShoppingCart,
+  SquarePlus,
   User,
+  Users,
   X,
 } from "lucide-react";
 import { useState } from "react";
 
 const linkClass =
-  "flex gap-1 items-center py-1 pl-5 hover:bg-[#333333] hover:cursor-pointer";
-const paragraphClass = "font-medium text-gray-100 md:text-lg";
+  "flex gap-2 items-center pl-5 hover:bg-[#333333] hover:cursor-pointer";
+const paragraphClass = "font-medium text-gray-100 text-lg";
 
 const Separator = () => <div className="h-0.5 border-t border-gray-400"></div>;
 
@@ -29,7 +30,7 @@ const SideNavigation = () => {
   return (
     <div className="flex">
       {/*Trigger*/}
-      <div id="sidenav-trigger" onClick={changeState}>
+      <div onClick={changeState}>
         <MenuIcon size={30} />
       </div>
       {/*SideNav*/}
@@ -40,9 +41,13 @@ const SideNavigation = () => {
                     ${isOpenClass}`}
       >
         {/* SideNav content */}
-        <div className="flex flex-col items-center">
+        <div
+          className={`flex flex-col p-2 transition  ${
+            isOpen ? "opacity-100 duration-1000" : "opacity-0 duration-0"
+          }`}
+        >
           <ArrowLeftSquare
-            size={32}
+            size={36}
             className="self-end"
             onClick={changeState}
           />
@@ -50,6 +55,45 @@ const SideNavigation = () => {
             Menu
           </p>
           <Separator />
+          <div className="flex flex-col mt-2 space-y-2" onClick={changeState}>
+            <Link href="/" className={linkClass}>
+              <HomeIcon size={22} />
+              <p className={paragraphClass}>Home</p>
+            </Link>
+            <Link href="/cart" className={linkClass}>
+              <ShoppingCart size={22} />
+              <p className={paragraphClass}>My Cart</p>
+            </Link>
+            <Link href="/profile" className={linkClass}>
+              <User size={22} />
+              <p className={paragraphClass}>Profile</p>
+            </Link>
+          </div>
+          {true && (
+            <>
+              <p className="mt-3 font-medium pl-3 text-sm text-gray-300 md:text-base">
+                Admin
+              </p>
+              <Separator />
+              <div
+                className="flex flex-col mt-2 space-y-2"
+                onClick={changeState}
+              >
+                <Link href="/inventary" className={linkClass}>
+                  <GalleryVerticalEnd size={22} />
+                  <p className={paragraphClass}>Inventary</p>
+                </Link>
+                <Link href="/users" className={linkClass}>
+                  <Users size={22} />
+                  <p className={paragraphClass}>Users</p>
+                </Link>
+                <Link href="/product/new" className={linkClass}>
+                  <SquarePlus size={22} />
+                  <p className={paragraphClass}>New</p>
+                </Link>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
