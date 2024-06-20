@@ -11,8 +11,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-const linkClass =
-  "flex gap-2 items-center pl-5 hover:bg-[#333333] hover:cursor-pointer";
+const linkClass = "flex gap-2 items-center pl-5 hover:cursor-pointer";
 const paragraphClass = "font-medium text-gray-100 text-lg";
 
 const Separator = () => <div className="h-0.5 border-t border-gray-400"></div>;
