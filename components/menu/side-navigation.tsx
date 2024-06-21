@@ -10,15 +10,11 @@ import {
   Users,
   X,
 } from "lucide-react";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const SideNavigation = () => {
-  const router = useRouter();
   const pathname = usePathname();
-
-  console.log(pathname);
-
   const [isOpen, setIsOpen] = useState(false);
 
   const changeState = () => {
@@ -37,17 +33,17 @@ const SideNavigation = () => {
         {
           icon: <GalleryVerticalEnd size={22} />,
           text: "Inventary",
-          page: "/",
+          page: "/product/all",
         },
-        { icon: <Users size={22} />, text: "Users", page: "/" },
+        { icon: <Users size={22} />, text: "Users", page: "/users" },
       ],
     },
     {
       title: "Menu",
       subItems: [
         { icon: <HomeIcon size={22} />, text: "Home", page: "/" },
-        { icon: <ShoppingCart size={22} />, text: "Cart", page: "/" },
-        { icon: <User size={22} />, text: "Profile", page: "/" },
+        { icon: <ShoppingCart size={22} />, text: "Cart", page: "/cart" },
+        { icon: <User size={22} />, text: "Profile", page: "/profile" },
       ],
     },
   ];
@@ -92,29 +88,25 @@ const SideNavigation = () => {
                     return (
                       <Link
                         href={subItem.page}
-                        className="flex gap-2 items-center hover:cursor-pointer"
+                        className={`flex font-medium gap-2 items-center text-lg ${
+                          pathname === subItem.page
+                            ? "text-green-400"
+                            : "text-gray-300 hover:text-gray-50"
+                        }`}
                         key={`subItem${index1 + 1}${index2 + 1}`}
                       >
                         {subItem.icon}
-                        <p
-                          className={`font-medium text-lg ${
-                            pathname === subItem.page
-                              ? "text-green-600"
-                              : "text-gray-100"
-                          }`}
-                        >
-                          {subItem.text}
-                        </p>
+                        {subItem.text}
                       </Link>
                     );
                   })}
                   {menuItem.title === "Menu" && (
                     <div
-                      className="flex gap-2 items-center hover:cursor-pointer"
-                      onClick={close}
+                      className="flex font-medium gap-2 items-center text-lg hover:cursor-pointer text-gray-300 hover:text-gray-50"
+                      onClick={changeState}
                     >
                       <LogOut size={22} />
-                      <p className="font-medium text-gray-100 text-lg">Exit</p>
+                      Exit
                     </div>
                   )}
                 </div>
