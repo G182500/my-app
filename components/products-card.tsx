@@ -7,6 +7,7 @@ interface ProductsCardProps {
 }
 
 const ProductsCard = ({ title, items }: ProductsCardProps) => {
+  console.log(items);
   return (
     <div className="flex flex-col bg-[#1d1d1d] p-4 space-y-4 sm:rounded-lg">
       <div className="flex items-center justify-between">
@@ -15,10 +16,9 @@ const ProductsCard = ({ title, items }: ProductsCardProps) => {
           Show all
         </p>
       </div>
-
       <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         {items.map((item) => (
-          <Product {...item} key={item.id} />
+          <Product {...item} key={item.title} />
         ))}
       </div>
     </div>

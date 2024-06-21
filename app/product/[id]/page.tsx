@@ -13,14 +13,7 @@ const getProductById = async (id: string) => {
 };
 
 const ProductDetail = () => {
-  const [product, setProduct] = useState<IProduct>({
-    id: "567890",
-    image: "/imgs/products/skillspills.jpg",
-    title: "Skills In Pills (2015) Lindemann",
-    description:
-      "Lançado em 22 de junho de 2015 pela Warner Music, 'Skills in Pills' é o álbum de estreia do grupo 'Lindemann', formado pelo vocalista do 'Rammstein', Till Lindemann, e por Peter Tägtgren, fundador do 'Hypocrisy' e do 'PAIN'.",
-    price: 20.9,
-  });
+  const [product, setProduct] = useState<IProduct>();
 
   const { register, reset, handleSubmit, getValues, setValue } = useForm<{
     quantity: number;
@@ -50,11 +43,11 @@ const ProductDetail = () => {
     isAuthenticated && (
       <div className="container mx-auto pt-16 sm:pt-[68px]">
         <div className="flex flex-col bg-[#1d1d1d] py-4 px-6 space-y-4 sm:rounded-lg">
-          {product.image ? (
+          {product.images_url ? (
             <div className="relative border-2 border-[#4e4e4e] rounded-lg self-center h-96 w-full">
               <Image
                 fill
-                src={product.image}
+                src={product.images_url[0]}
                 alt={product.title}
                 className="absolute object-cover rounded-md"
               />

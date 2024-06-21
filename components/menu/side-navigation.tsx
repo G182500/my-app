@@ -6,8 +6,8 @@ import {
   MenuIcon,
   ShoppingCart,
   SquarePlus,
-  User,
-  Users,
+  User2,
+  Users2,
   X,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -35,7 +35,7 @@ const SideNavigation = () => {
           text: "Inventary",
           page: "/product/all",
         },
-        { icon: <Users size={22} />, text: "Users", page: "/users" },
+        { icon: <Users2 size={22} />, text: "Users", page: "/users" },
       ],
     },
     {
@@ -43,39 +43,38 @@ const SideNavigation = () => {
       subItems: [
         { icon: <HomeIcon size={22} />, text: "Home", page: "/" },
         { icon: <ShoppingCart size={22} />, text: "Cart", page: "/cart" },
-        { icon: <User size={22} />, text: "Profile", page: "/profile" },
+        { icon: <User2 size={22} />, text: "Profile", page: "/profile" },
       ],
     },
   ];
 
-  let sideNavClass = `bg-[#505050] top-0 left-0 fixed h-screen duration-300 z-40 ${
-    isOpen ? "p-2 w-56" : " w-0 overflow-hidden"
+  const sideNavClass = `bg-[#505050] top-0 left-0 fixed h-screen duration-300 z-40 ${
+    isOpen ? "p-2 w-60" : "w-0"
   }`;
 
   return (
-    <div className="flex">
-      {/*Trigger*/}
+    <div className="flex md:hidden">
       <MenuIcon
-        className="hover:cursor-pointer"
+        id="sideNavTrigger"
+        className="text-gray-300 hover:text-white hover:cursor-pointer"
         size={30}
         onClick={changeState}
       />
-      {/*SideNav*/}
-      <div className={sideNavClass}>
-        {/*SideNav Content*/}
+      <div id="sideNav" className={sideNavClass}>
         <div
+          id="sideNavContent"
           className={`flex flex-col p-2 transition ${
             isOpen ? "opacity-100 duration-1000" : "opacity-0 duration-0"
           }`}
         >
           <X
             size={28}
-            className="hover:cursor-pointer self-end"
+            className="text-gray-300 hover:text-white hover:cursor-pointer self-end"
             onClick={changeState}
           />
           {menuItems.map((menuItem, index1) => {
             return (
-              <div key={`menuItem${index1 + 1}`} className="flex flex-col mt-3">
+              <div key={`menuItem${index1 + 1}`} className="flex flex-col mt-4">
                 <p className="font-medium ml-3 text-sm text-gray-300 md:text-base">
                   {menuItem.title}
                 </p>
@@ -91,7 +90,7 @@ const SideNavigation = () => {
                         className={`flex font-medium gap-2 items-center text-lg ${
                           pathname === subItem.page
                             ? "text-green-400"
-                            : "text-gray-300 hover:text-gray-50"
+                            : "text-gray-300 hover:text-white"
                         }`}
                         key={`subItem${index1 + 1}${index2 + 1}`}
                       >
@@ -101,13 +100,13 @@ const SideNavigation = () => {
                     );
                   })}
                   {menuItem.title === "Menu" && (
-                    <div
-                      className="flex font-medium gap-2 items-center text-lg hover:cursor-pointer text-gray-300 hover:text-gray-50"
+                    <button
+                      className="flex font-medium gap-2 items-center text-lg hover:cursor-pointer text-gray-300 hover:text-white"
                       onClick={changeState}
                     >
                       <LogOut size={22} />
                       Exit
-                    </div>
+                    </button>
                   )}
                 </div>
               </div>

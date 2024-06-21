@@ -1,80 +1,63 @@
 "use client";
 import { AuthContext } from "@/contexts/auth-provider";
 import { useContext } from "react";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
 import ProductsCard from "@/components/products-card";
+import { IProduct } from "@/interfaces/product";
 
-//import { useMutation } from "@tanstack/react-query";
+interface GetAllProducts {
+  message: string;
+  products: IProduct[];
+}
 
-export default function Home() {
+const getProductsByCategory = async () => {
+  const category = "Compact Discs";
+  const resp = await fetch(`/api/product/get-by-category/${category}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (resp.status !== 200) return;
+  const { message, products }: GetAllProducts = await resp.json();
+  return products;
+};
+
+const Content = () => {
   const { user } = useContext(AuthContext);
 
-  console.log("user", user);
-
-  /*const loginMutation = useMutation({
-    mutationFn: (params) => {
-      return fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(params),
-      })
-    }
+  const productsQuery = useQuery<IProduct[] | undefined>({
+    queryKey: ["ProductsByCategory"],
+    queryFn: getProductsByCategory,
   });
-  loginMutation.mutateAsync(loginParams);*/
 
-  /*{
-            id: "987432",
-            image: "/imgs/products/ausberlin.jpeg",
-            title: "Live aus Berlin (1999) Rammstein",
-            description: "Descrição do produto 2",
-            price: 59.9,
-          },
-          {
-            id: "654321",
-            image: "/imgs/products/daygusano.jpg",
-            title: "Day of the Gusano: Live in Mexico (2017) Slipknot",
-            description: "Descrição do produto 1",
-            price: 59.9,
-          },
-          {
-            id: "654",
-            title: "Produto3",
-            description: "Descrição do produto 2",
-            price: 20.9,
-          }, 
-          
-          {
-            id: "123456",
-            imagesUrl: "/imgs/products/sehnsucht.jpg",
-            title: "Sehnsucht Anniversary Edition (2023) Rammstein",
-            description: "Descrição do produto 1",
-            price: 59.9,
-          },
-          {
-            id: "456789",
-            imagesUrl: "/imgs/products/iowa.jpeg",
-            title: "Iowa (2001) Slipknot",
-            description: "Descrição do produto 2",
-            price: 45,
-          },
-          {
-            id: "567890",
-            image: "/imgs/products/skillspills.jpg",
-            title: "Skills In Pills (2015) Lindemann",
-            description: "Descrição do produto 2",
-            price: 20.9,
-          },
-          */
+  if (productsQuery.data) {
+    console.log(productsQuery.data);
+  }
 
   return (
     <div className="container mx-auto space-y-2 pt-16 sm:pt-[68px] sm:space-y-3">
-      <ProductsCard title="Compact Discs" items={[]} />
-      <ProductsCard title="T-Shirts" items={[]} />
-      <ProductsCard title="Movies" items={[]} />
+      {productsQuery.isPending && (
+        <div className="flex flex-col animate-pulse bg-[#1d1d1d] p-4 space-y-4 sm:rounded-lg">
+          <span className="bg-[#424242] rounded-xl h-5 w-44 md:h-6" />
+          <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+            <span className="bg-[#424242] h-40 rounded-md sm:h-96" />
+            <span className="bg-[#424242] h-40 rounded-md sm:h-96" />
+            <span className="bg-[#424242] h-40 rounded-md sm:h-96" />
+            <span className="bg-[#424242] h-40 rounded-md sm:h-96" />
+          </div>
+        </div>
+      )}
+      {productsQuery.data && (
+        <ProductsCard title="Compact Discs" items={productsQuery.data} />
+      )}
     </div>
   );
-}
+};
 
 /*
 import { DataTable } from "@/components/data-table";
@@ -150,3 +133,20 @@ return (
 </div>
 );
 } */
+
+const Home = () => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: 2,
+      },
+    },
+  });
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Content />
+    </QueryClientProvider>
+  );
+};
+export default Home;

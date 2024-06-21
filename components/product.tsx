@@ -26,26 +26,25 @@ Outros atributos relevantes da promoção*/
 /*O nome do arquivo deve permanecer imutável e gerado aleatoriamente para evitar a sobreposição com outros arquivos,
 se não pudermos apontar para o arquivo no disco, basicamente o perderemos. Lembre-se de que você também precisará excluir o registro dos metadados se precisar excluir o arquivo. */
 
-const Product = ({ id, image, title, price, oldPrice }: ProductProps) => {
+const Product = ({ _id, images_url, title, price, oldPrice }: ProductProps) => {
   const router = useRouter();
   const imgSize = "h-40 w-72 sm:h-56 sm:w-full";
 
-  //Testes
-  oldPrice = 99.9;
+  //oldPrice = 99.9;
 
   return (
     <div
       title={title}
       className="flex sm:flex-col bg-[#424242] rounded-md hover:opacity-70 hover:cursor-pointer"
       onClick={() => {
-        router.push(`/product/${id}`);
+        router.push(`/product/${_id}`);
       }}
     >
-      {image ? (
+      {images_url ? (
         <div className={`relative ${imgSize}`}>
           <Image
             fill
-            src={image}
+            src={images_url[0]}
             alt={title}
             className="absolute rounded-l-md object-cover sm:rounded-t-md sm:rounded-bl-none"
           />

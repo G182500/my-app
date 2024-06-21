@@ -2,15 +2,13 @@
 
 //import logo from "@/assets/imgs/lindemann-logo.png";
 import {
-  MenuIcon,
   ShoppingCart,
   CircleUserRound,
   LogOut,
-  HomeIcon,
   SquarePlus,
-  User,
   GalleryVerticalEnd,
   Users,
+  Users2,
 } from "lucide-react";
 import Input from "./ui/input";
 import { AuthContext } from "@/contexts/auth-provider";
@@ -20,6 +18,7 @@ import { useToast } from "./ui/toaster/use-toast";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import Link from "next/link";
 import SideNavigation from "./menu/side-navigation";
+import Image from "next/image";
 
 const getSalutation = () => {
   const hour = new Date().getHours();
@@ -68,16 +67,9 @@ const Header = () => {
   //const userId = localStorage.getItem("userId");
   //get userName by userId
   const userName = "Gabriel Bueno"; //Pegar primeiro e ultimo nome
+  const admin = true;
 
   //bg-[#2e2e2e]
-
-  /*
-<div className="hidden sm:flex gap-4 items-center">
-    <MenuIcon size={28} />
-    <ShoppingCart size={24} />
-    <User size={24} />
-  </div>  
-*/
 
   return (
     isAuthenticated && (
@@ -85,12 +77,36 @@ const Header = () => {
         <div className="flex gap-4 items-center">
           <SideNavigation />
           <p className="text-2xl">LOGOO</p>
-          <Input className="w-60 sm:w-80" />
+          <Input className="w-60 md:w-72 lg:w-96" />
         </div>
-        {/*<div className="flex gap-3 items-center">
-          <CircleUserRound size={28} />
-          <p className="font-semibold text-lg">{userName}</p>
-        </div>*/}
+        <div className="hidden md:flex items-center space-x-5">
+          <Link
+            href="/profile"
+            className="flex bg-[#424242] gap-1 items-center pr-2 rounded-xl text-gray-300 hover:text-white"
+          >
+            <CircleUserRound size={28} />
+            <p className="font-semibold text-lg">{userName}</p>
+          </Link>
+          {admin && (
+            <>
+              <Link
+                href="/product/all"
+                className="flex gap-1 items-center text-gray-300 hover:text-white"
+              >
+                <GalleryVerticalEnd size={28} />
+              </Link>
+              <Link href="/users" className="text-gray-300 hover:text-white">
+                <Users2 size={28} />
+              </Link>
+            </>
+          )}
+          <Link href="/cart" className="text-gray-300 hover:text-white">
+            <ShoppingCart size={28} />
+          </Link>
+          <button className="text-gray-300 hover:text-white">
+            <LogOut size={26} />
+          </button>
+        </div>
       </div>
     )
   );
