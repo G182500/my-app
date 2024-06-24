@@ -17,8 +17,8 @@ const SideNavigation = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
-  const changeState = () => {
-    setIsOpen(!isOpen);
+  const close = () => {
+    setIsOpen(false);
   };
 
   const menuItems = [
@@ -58,7 +58,9 @@ const SideNavigation = () => {
         id="sideNavTrigger"
         className="text-gray-300 hover:text-white hover:cursor-pointer"
         size={30}
-        onClick={changeState}
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
       />
       <div id="sideNav" className={sideNavClass}>
         <div
@@ -70,7 +72,7 @@ const SideNavigation = () => {
           <X
             size={28}
             className="text-gray-300 hover:text-white hover:cursor-pointer self-end"
-            onClick={changeState}
+            onClick={close}
           />
           {menuItems.map((menuItem, index1) => {
             return (
@@ -81,7 +83,7 @@ const SideNavigation = () => {
                 <div className="h-0.5 border-t border-gray-400" />
                 <div
                   className="flex flex-col mt-2 pl-5 space-y-3"
-                  onClick={changeState}
+                  onClick={close}
                 >
                   {menuItem.subItems.map((subItem, index2) => {
                     return (
@@ -100,10 +102,7 @@ const SideNavigation = () => {
                     );
                   })}
                   {menuItem.title === "Menu" && (
-                    <button
-                      className="flex font-medium gap-2 items-center text-lg hover:cursor-pointer text-gray-300 hover:text-white"
-                      onClick={changeState}
-                    >
+                    <button className="flex font-medium gap-2 items-center text-lg hover:cursor-pointer text-gray-300 hover:text-white">
                       <LogOut size={22} />
                       Exit
                     </button>
