@@ -1,3 +1,4 @@
+import { NextRequest } from "next/server";
 import { Pool } from "pg";
 
 interface Params {
@@ -27,14 +28,14 @@ export async function GET(req: Request, { params }: { params: Params }) {
     return Response.json(
       {
         message: "sucesso ao buscar os produtos",
-        products: [productsByCategory.rows],
+        products: productsByCategory.rows,
       },
       { status: 200 }
     );
   } catch {
     return Response.json(
       { message: "erro ao buscar os produtos" },
-      { status: 404 }
+      { status: 500 }
     );
   }
 }

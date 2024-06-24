@@ -17,8 +17,8 @@ const ProductsCard = ({ title, items }: ProductsCardProps) => {
         </p>
       </div>
       <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-        {items.map((item) => (
-          <Product {...item} key={item.title} />
+        {items.map((item, index) => (
+          <Product {...item} key={item._id} />
         ))}
       </div>
     </div>

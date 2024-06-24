@@ -1,31 +1,39 @@
 import { Pool } from "pg";
 
-export interface CreateUserResponse {
-  message: string;
+interface Params {
+  id: string;
 }
 
-export async function POST(req: Request) {
-  const pool = new Pool({
-    connectionString: process.env.CONNECTION_STRING,
-    //Example: postgres://user:password@host:port/database
-  });
-  const client = await pool.connect();
+/*SELECT *
+FROM sua_tabela
+ORDER BY RANDOM()
+LIMIT 3;*/
 
-  //const id = ;
-  //const username = ;
-  //const password = ;
-  //const permission = ;*/
-  //const { username, password }: LoginParams = await req.json();
-  const createUser = await client.query(
-    `INSERT INTO users (_id, username, _password, _permission) VALUES ('${id}','${username}','${password}','${permission}'`
-  );
-  client.release();
+export async function GET(req: Request, { params }: { params: Params }) {
+  try {
+    const pool = new Pool({
+      connectionString: process.env.CONNECTION_STRING,
+      //Ex: postgres://user:password@host:port/database
+    });
+    const client = await pool.connect();
 
-  //https://www.youtube.com/watch?v=pvrKHpXGO8E&t=3335s
-  //const token = "1ab2cd3ef4gh5ij";
-  console.log(createUser.rows[0]);
-  return Response.json(
-    { message: "Usuário criado com sucesso" },
-    { status: 200 }
-  );
+    const productById = await client.query(
+      `SELECT * FROM products WHERE _id = '${params.id}'`
+    );
+
+    client.release(); //close connection
+
+    return Response.json(
+      {
+        message: "sucesso ao buscar o produto",
+        product: productById.rows[0],
+      },
+      { status: 200 }
+    );
+  } catch {
+    return Response.json(
+      { message: "erro ao buscar o produto" },
+      { status: 500 }
+    );
+  }
 }

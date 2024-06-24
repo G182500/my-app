@@ -35,10 +35,6 @@ const Content = () => {
     queryFn: getProductsByCategory,
   });
 
-  if (productsQuery.data) {
-    console.log(productsQuery.data);
-  }
-
   return (
     <div className="container mx-auto space-y-2 pt-16 sm:pt-[68px] sm:space-y-3">
       {productsQuery.isPending && (
