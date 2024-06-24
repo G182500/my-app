@@ -44,7 +44,7 @@ const Product = ({ _id, images_url, title, price, oldPrice }: ProductProps) => {
         <div className={`relative ${imgSize}`}>
           <Image
             fill
-            src={images_url[0]}
+            src={images_url.split(";")[0]}
             alt={title}
             className="absolute rounded-l-md object-cover sm:rounded-t-md sm:rounded-bl-none"
           />

@@ -49,7 +49,7 @@ const SideNavigation = () => {
   ];
 
   const sideNavClass = `bg-[#505050] top-0 left-0 fixed h-screen duration-300 z-40 ${
-    isOpen ? "p-2 w-60" : "w-0 p-0"
+    isOpen ? "p-2 w-60" : "w-0 p-0 pointer-events-none"
   }`;
 
   return (

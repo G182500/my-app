@@ -8,6 +8,7 @@ import {
 } from "@tanstack/react-query";
 import ProductsCard from "@/components/products-card";
 import { IProduct } from "@/interfaces/product";
+import Skeleton from "@/components/skeleton";
 
 interface GetAllProducts {
   message: string;
@@ -38,18 +39,22 @@ const Content = () => {
   return (
     <div className="container mx-auto space-y-2 pt-16 sm:pt-[68px] sm:space-y-3">
       {productsQuery.isPending && (
-        <div className="flex flex-col animate-pulse bg-[#1d1d1d] p-4 space-y-4 sm:rounded-lg">
-          <span className="bg-[#424242] rounded-xl h-5 w-44 md:h-6" />
+        <div className="flex flex-col bg-[#1d1d1d] p-4 space-y-4 sm:rounded-lg">
+          <Skeleton className="rounded-md h-6 w-44 md:h-6" />
           <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-            <span className="bg-[#424242] h-40 rounded-md sm:h-96" />
-            <span className="bg-[#424242] h-40 rounded-md sm:h-96" />
-            <span className="bg-[#424242] h-40 rounded-md sm:h-96" />
-            <span className="bg-[#424242] h-40 rounded-md sm:h-96" />
+            <Skeleton className="h-40 rounded-md sm:h-96" />
+            <Skeleton className="h-40 rounded-md sm:h-96" />
+            <Skeleton className="h-40 rounded-md sm:h-96" />
           </div>
         </div>
       )}
       {productsQuery.data && (
-        <ProductsCard title="Compact Discs" items={productsQuery.data} />
+        <>
+          <ProductsCard title="Compact Discs" items={productsQuery.data} />
+          <ProductsCard title="Movies" items={[]} />
+          <ProductsCard title="Posters" items={[]} />
+          <ProductsCard title="T-Shirts" items={[]} />
+        </>
       )}
     </div>
   );

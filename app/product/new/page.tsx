@@ -2,23 +2,30 @@
 import { useContext } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { AuthContext } from "@/contexts/auth-provider";
-import QuantityInput from "@/components/quantity-input";
+import QuantityInput from "@/components/ui/quantity-input";
 import { IProduct } from "@/interfaces/product";
 import { generateId } from "@/utils/generate-id";
 
 const createProduct = async (product: IProduct) => {
-  product.id = generateId();
-  if (!product.imagesUrl) product.imagesUrl = "";
+  product._id = generateId();
+  product.price = Number(product.price);
+  if (!product.images_url) {
+    product.images_url = "/imgs/products/rio.jpeg;";
+  }
 
-  console.log(product);
-  /*
-  const response = await fetch(`/api/product/${id}`, {
-    method: "GET",
-  });*/
+  const resp = await fetch(`/api/product/new`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(product),
+  });
+
+  console.log(resp.status);
 };
 
 const Create = () => {
-  const { signIn } = useContext(AuthContext);
+  //const { signIn } = useContext(AuthContext);
   const { register, reset, handleSubmit, setValue, getValues } =
     useForm<IProduct>();
 
@@ -54,20 +61,17 @@ const Create = () => {
             >
               <option value="Compact Discs">Compact Discs</option>
               <option value="Movies">Movies</option>
+              <option value="Posters">Posters</option>
               <option value="T-Shirts">T-Shirts</option>
             </select>
             <div className="flex bg-[#424242] p-2 rounded-md gap-2">
               <p className="font-medium text-white">R$</p>
               <input
                 className="bg-transparent font-medium text-white w-24 placeholder:italic"
-                placeholder="1499,90"
+                placeholder="1499.90"
                 type="text"
                 {...register("price", {
                   required: true,
-                  pattern: {
-                    value: /^\d+(\,\d{1,2})?$/,
-                    message: "Por favor, insira um preço válido.",
-                  },
                 })}
               />
             </div>

@@ -69,7 +69,7 @@ const Content = ({ id }: { id: string }) => {
             </div>
             <div className="flex flex-col space-y-1">
               <p className="font-semibold text-xs">DESCRIPTION</p>
-              <Skeleton className="rounded-lg h-16 w-full" />
+              <Skeleton className="rounded-lg h-24 w-full" />
             </div>
           </>
         ) : (
@@ -78,8 +78,7 @@ const Content = ({ id }: { id: string }) => {
               <div className="relative border-2 border-[#4e4e4e] rounded-lg self-center h-96 w-full">
                 <Image
                   fill
-                  src="/imgs/products/skillspills.jpg"
-                  //src={product.images_url[0]}
+                  src={product.images_url.split(";")[0]}
                   alt={product.title}
                   className="absolute object-cover rounded-md"
                 />
