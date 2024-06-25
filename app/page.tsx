@@ -1,44 +1,20 @@
 "use client";
 import { AuthContext } from "@/contexts/auth-provider";
 import { useContext } from "react";
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from "@tanstack/react-query";
 import ProductsCard from "@/components/products-card";
-import { IProduct } from "@/interfaces/product";
 import Skeleton from "@/components/skeleton";
+import { useGetProductByCategory } from "@/services/product/get-by-category";
 
-interface GetAllProducts {
-  message: string;
-  products: IProduct[];
-}
-
-const getProductsByCategory = async () => {
-  const category = "Compact Discs";
-  const resp = await fetch(`/api/product/get-by-category/${category}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (resp.status !== 200) return;
-  const { message, products }: GetAllProducts = await resp.json();
-  return products;
-};
-
-const Content = () => {
+const Home = () => {
   const { user } = useContext(AuthContext);
 
-  const productsQuery = useQuery<IProduct[] | undefined>({
-    queryKey: ["ProductsByCategory"],
-    queryFn: getProductsByCategory,
+  const getProducts = useGetProductByCategory("Compact Discs", {
+    enabled: true,
   });
 
   return (
     <>
-      {productsQuery.isPending && (
+      {getProducts.isPending && (
         <div className="flex flex-col bg-[#1d1d1d] p-4 space-y-4 sm:rounded-lg">
           <Skeleton className="rounded-md h-6 w-44 md:h-6" />
           <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
@@ -48,9 +24,12 @@ const Content = () => {
           </div>
         </div>
       )}
-      {productsQuery.data && (
+      {getProducts.data && (
         <>
-          <ProductsCard title="Compact Discs" items={productsQuery.data} />
+          <ProductsCard
+            title="Compact Discs"
+            items={getProducts.data.products}
+          />
           <ProductsCard title="Movies" items={[]} />
           <ProductsCard title="Posters" items={[]} />
           <ProductsCard title="T-Shirts" items={[]} />
@@ -135,19 +114,4 @@ return (
 );
 } */
 
-const Home = () => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: 2,
-      },
-    },
-  });
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <Content />
-    </QueryClientProvider>
-  );
-};
 export default Home;

@@ -5,28 +5,23 @@ import { ImageIcon, ShoppingCart } from "lucide-react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import QuantityInput from "@/components/ui/quantity-input";
 import { useEffect, useState } from "react";
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from "@tanstack/react-query";
 import Skeleton from "@/components/skeleton";
 import { useGetProductById } from "@/services/product/get-by-id";
 
-const Content = ({ id }: { id: string }) => {
+const ProductDetail = ({ params }: { params: { id: string } }) => {
+  //params -> URL's parameter too
   const [product, setProduct] = useState<IProduct>();
-
-  const { register, reset, handleSubmit, getValues, setValue } = useForm<{
-    quantity: number;
-  }>();
-
-  const getProduct = useGetProductById(id, {
+  const getProduct = useGetProductById(params.id, {
     enabled: true,
   });
 
   useEffect(() => {
     if (getProduct.data) setProduct(getProduct.data.product);
   }, [getProduct.data]);
+
+  const { register, reset, handleSubmit, getValues, setValue } = useForm<{
+    quantity: number;
+  }>();
 
   const quantity = Number(getValues("quantity"));
   let oldPrice = 99.9;
@@ -42,7 +37,6 @@ const Content = ({ id }: { id: string }) => {
     }
   };
 
-  console.log(product?.description);
   return (
     <div className="flex flex-col bg-[#1d1d1d] py-4 px-6 space-y-4 sm:rounded-lg">
       {!product ? (
@@ -56,7 +50,7 @@ const Content = ({ id }: { id: string }) => {
           </div>
           <div className="flex flex-col space-y-1">
             <p className="font-semibold text-xs">DESCRIPTION</p>
-            <Skeleton className="rounded-lg h-24 w-full" />
+            <Skeleton className="rounded-lg h-36 w-full" />
           </div>
         </>
       ) : (
@@ -122,36 +116,17 @@ const Content = ({ id }: { id: string }) => {
             </form>
             <div className="flex flex-col space-y-1">
               <p className="font-semibold text-xs">DESCRIPTION</p>
-              {/*whitespace-pre-line -> Navegador interprete quebra de linha (\n) no layout*/}
-              <p className="bg-[#3a3a3a] font-semibold opacity-70 text-justify text-xs p-2 whitespace-pre-line">
-                {product.description}
-              </p>
+              <div className="bg-[#3a3a3a] p-2 rounded-lg">
+                {/*whitespace-pre-line -> Navegador interprete '\n' no layout*/}
+                <p className="font-semibold opacity-70 text-justify text-xs whitespace-pre-line">
+                  {product.description}
+                </p>
+              </div>
             </div>
           </div>
         </>
       )}
     </div>
-  );
-};
-
-const ProductDetail = ({ params }: { params: { id: string } }) => {
-  //params -> URL's parameter too
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: 2,
-      },
-    },
-  });
-
-  const isAuthenticated = true;
-
-  return (
-    isAuthenticated && (
-      <QueryClientProvider client={queryClient}>
-        <Content id={params.id} />
-      </QueryClientProvider>
-    )
   );
 };
 
