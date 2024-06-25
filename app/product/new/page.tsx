@@ -33,13 +33,12 @@ const Create = () => {
   const onSubmit: SubmitHandler<IProduct> = async (data) => {
     try {
       const resp = await createProduct(data);
-      if (resp.status === 200) {
-        reset();
+      console.log(resp.status === 200);
+      /*reset();
         toast({
           variant: "success",
           title: "Produto criado com sucesso",
-        });
-      }
+        });*/
     } catch (error) {
       console.log(error);
     }

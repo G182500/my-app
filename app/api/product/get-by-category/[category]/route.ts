@@ -19,7 +19,7 @@ export async function GET(req: Request, { params }: { params: Params }) {
 
     const { category } = params;
     const productsByCategory = await client.query(
-      `SELECT * FROM products WHERE category = '${category}' ORDER BY title`
+      `SELECT * FROM products WHERE category = '${category}' ORDER BY RANDOM() LIMIT 3`
     );
 
     client.release(); //close connection
