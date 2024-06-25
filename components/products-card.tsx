@@ -32,7 +32,7 @@ const ProductsCard = ({ title }: ProductsCardProps) => {
         </p>
       </div>
       <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-        {getProducts.isPending && (
+        {getProducts.isFetching && (
           <>
             <Skeleton className="h-40 rounded-md sm:h-96" />
             <Skeleton className="h-40 rounded-md sm:h-96" />
