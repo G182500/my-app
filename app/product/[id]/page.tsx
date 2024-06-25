@@ -123,7 +123,7 @@ const Content = ({ id }: { id: string }) => {
             <div className="flex flex-col space-y-1">
               <p className="font-semibold text-xs">DESCRIPTION</p>
               {/*whitespace-pre-line -> Navegador interprete quebra de linha (\n) no layout*/}
-              <p className="font-semibold opacity-70 text-justify text-xs whitespace-pre-line">
+              <p className="bg-[#3a3a3a] font-semibold opacity-70 text-justify text-xs p-2 whitespace-pre-line">
                 {product.description}
               </p>
             </div>
