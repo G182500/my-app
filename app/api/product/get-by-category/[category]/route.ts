@@ -1,4 +1,3 @@
-import { NextRequest } from "next/server";
 import { Pool } from "pg";
 
 interface Params {

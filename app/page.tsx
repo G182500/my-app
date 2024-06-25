@@ -2,39 +2,20 @@
 import { AuthContext } from "@/contexts/auth-provider";
 import { useContext } from "react";
 import ProductsCard from "@/components/products-card";
-import Skeleton from "@/components/skeleton";
-import { useGetProductByCategory } from "@/services/product/get-by-category";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
 
-  const getProducts = useGetProductByCategory("Compact Discs", {
+  /*const getProducts = useGetAllCategory({
     enabled: true,
-  });
+  });*/
 
   return (
     <>
-      {getProducts.isPending && (
-        <div className="flex flex-col bg-[#1d1d1d] p-4 space-y-4 sm:rounded-lg">
-          <Skeleton className="rounded-md h-6 w-44 md:h-6" />
-          <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-            <Skeleton className="h-40 rounded-md sm:h-96" />
-            <Skeleton className="h-40 rounded-md sm:h-96" />
-            <Skeleton className="h-40 rounded-md sm:h-96" />
-          </div>
-        </div>
-      )}
-      {getProducts.data && (
-        <>
-          <ProductsCard
-            title="Compact Discs"
-            items={getProducts.data.products}
-          />
-          <ProductsCard title="Movies" items={[]} />
-          <ProductsCard title="Posters" items={[]} />
-          <ProductsCard title="T-Shirts" items={[]} />
-        </>
-      )}
+      <ProductsCard title="Compact Discs" />
+      <ProductsCard title="Movies" />
+      <ProductsCard title="Posters" />
+      <ProductsCard title="T-Shirts" />
     </>
   );
 };

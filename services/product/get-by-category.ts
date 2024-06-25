@@ -6,7 +6,7 @@ interface GetProductByCategoryOutput {
   products: IProduct[];
 }
 
-export const useGetProductByCategory = (
+export const useGetProductsByCategory = (
   category: string,
   options?: Omit<
     UseQueryOptions<GetProductByCategoryOutput>,
@@ -15,7 +15,7 @@ export const useGetProductByCategory = (
 ) => {
   return useQuery({
     ...options,
-    queryKey: ["ProductByCategory"],
+    queryKey: [category.split(" ")[0]],
     queryFn: async () => {
       const resp = await fetch(`/api/product/get-by-category/${category}`, {
         method: "GET",
