@@ -37,7 +37,7 @@ const Content = () => {
   });
 
   return (
-    <div className="container mx-auto space-y-2 pt-16 sm:pt-[68px] sm:space-y-3">
+    <>
       {productsQuery.isPending && (
         <div className="flex flex-col bg-[#1d1d1d] p-4 space-y-4 sm:rounded-lg">
           <Skeleton className="rounded-md h-6 w-44 md:h-6" />
@@ -56,7 +56,7 @@ const Content = () => {
           <ProductsCard title="T-Shirts" items={[]} />
         </>
       )}
-    </div>
+    </>
   );
 };
 
