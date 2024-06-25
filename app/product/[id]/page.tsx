@@ -39,7 +39,7 @@ const ProductDetail = ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="flex flex-col bg-[#1d1d1d] py-4 px-6 space-y-4 sm:rounded-lg">
-      {!product ? (
+      {getProduct.isFetching ? (
         <>
           <Skeleton className="rounded-lg h-96 w-full" />
           <Skeleton className="rounded-lg h-6 w-full" />
@@ -55,7 +55,7 @@ const ProductDetail = ({ params }: { params: { id: string } }) => {
         </>
       ) : (
         <>
-          {product.images_url ? (
+          {product?.images_url ? (
             <div className="relative border-2 border-[#4e4e4e] rounded-lg self-center h-96 w-full">
               <Image
                 fill
@@ -74,11 +74,11 @@ const ProductDetail = ({ params }: { params: { id: string } }) => {
           )}
           <div className="flex flex-col space-y-4">
             <div className="flex flex-col space-y-1">
-              <p className="font-semibold text-lg">{product.title}</p>
+              <p className="font-semibold text-lg">{product?.title}</p>
               {oldPrice ? (
                 <div className="flex items-start gap-2">
                   <p className="font-semibold text-3xl text-green-400">
-                    R$ {product.price}
+                    R$ {product?.price}
                   </p>
                   <p className="font-semibold line-through text-green-400 opacity-80">
                     R$ {oldPrice}
@@ -86,7 +86,7 @@ const ProductDetail = ({ params }: { params: { id: string } }) => {
                 </div>
               ) : (
                 <p className="font-semibold text-xl text-green-400">
-                  R$ {product.price}
+                  R$ {product?.price}
                 </p>
               )}
             </div>
@@ -116,10 +116,10 @@ const ProductDetail = ({ params }: { params: { id: string } }) => {
             </form>
             <div className="flex flex-col space-y-1">
               <p className="font-semibold text-xs">DESCRIPTION</p>
-              <div className="bg-[#3a3a3a] p-2 rounded-lg">
+              <div className="bg-[#3a3a3a] p-2 rounded-lg min-h-36">
                 {/*whitespace-pre-line -> Navegador interprete '\n' no layout*/}
                 <p className="font-semibold opacity-70 text-justify text-xs whitespace-pre-line">
-                  {product.description}
+                  {product?.description}
                 </p>
               </div>
             </div>

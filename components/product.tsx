@@ -7,12 +7,7 @@ interface ProductProps extends IProduct {
   oldPrice?: number;
 }
 
-/*Tabela "Produtos":
-ID (chave primária)
-Nome
-Descrição
-Outros atributos relevantes do produto
-
+/*
 Tabela "Promoções":
 ID (chave primária)
 ID do Produto (chave estrangeira referenciando a tabela "Produtos")
@@ -29,6 +24,10 @@ se não pudermos apontar para o arquivo no disco, basicamente o perderemos. Lemb
 const Product = ({ _id, images_url, title, price, oldPrice }: ProductProps) => {
   const router = useRouter();
   const imgSize = "h-40 w-72 sm:h-56 sm:w-full";
+
+  const fees = (Math.round(price / 2) + price * 0.06).toLocaleString("pt-br", {
+    maximumFractionDigits: 2,
+  });
 
   //oldPrice = 99.9;
 
@@ -54,10 +53,10 @@ const Product = ({ _id, images_url, title, price, oldPrice }: ProductProps) => {
           <ImageIcon className="size-24 sm:size-36" color="#9c9c9c" />
         </div>
       )}
-      <div className="flex flex-col px-3 py-2 justify-around h-full w-full sm:h-40 sm:justify-between sm:py-3">
+      <div className="flex flex-col px-3 py-2 justify-around w-full sm:h-40 sm:justify-between sm:py-3">
         <p className="font-semibold text-sm line-clamp-2">{title}</p>
 
-        {/*Modelos de informações - Fazer componente de StatusLabel depois */}
+        {/*Modelos de informações - Fazer componente de StatusLabel depois
         <div className="flex gap-2">
           <p className="font-semibold rounded-sm bg-green-400 bg-opacity-80 italic text-xs w-fit px-2">
             New
@@ -68,9 +67,9 @@ const Product = ({ _id, images_url, title, price, oldPrice }: ProductProps) => {
           <p className="font-semibold rounded-sm bg-red-600 bg-opacity-80 italic text-xs w-fit px-2">
             Sold out
           </p>
-        </div>
+        </div>*/}
 
-        {oldPrice ? (
+        {/*oldPrice ? (
           <div className="flex items-start gap-2">
             <p className="font-semibold text-2xl text-green-400">R$ {price}</p>
             <p className="font-semibold line-through text-sm text-green-400 opacity-80">
@@ -78,9 +77,20 @@ const Product = ({ _id, images_url, title, price, oldPrice }: ProductProps) => {
             </p>
           </div>
         ) : (
-          <p className="font-semibold text-xl text-green-400">R$ {price}</p>
-        )}
+          <p className="font-semibold text-2xl text-green-400">R$ {price}</p>
+        )*/}
 
+        <div>
+          <p className="font-semibold text-2xl text-green-400">
+            R${" "}
+            {price.toLocaleString("pt-br", {
+              minimumFractionDigits: 2,
+            })}
+          </p>
+          <p className="font-medium ml-1 opacity-75 text-white text-xs">
+            ou 2x de R$ {fees}
+          </p>
+        </div>
         <button className="flex items-center justify-end gap-2 sm:justify-center">
           <p className="font-semibold italic text-sm">View details</p>
           <ArrowRightCircle size={16} />
