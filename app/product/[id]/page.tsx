@@ -15,6 +15,7 @@ import { useGetProductById } from "@/services/product/get-by-id";
 
 const Content = ({ id }: { id: string }) => {
   const [product, setProduct] = useState<IProduct>();
+
   const { register, reset, handleSubmit, getValues, setValue } = useForm<{
     quantity: number;
   }>();
@@ -41,6 +42,7 @@ const Content = ({ id }: { id: string }) => {
     }
   };
 
+  console.log(product?.description);
   return (
     <div className="flex flex-col bg-[#1d1d1d] py-4 px-6 space-y-4 sm:rounded-lg">
       {!product ? (
@@ -120,7 +122,8 @@ const Content = ({ id }: { id: string }) => {
             </form>
             <div className="flex flex-col space-y-1">
               <p className="font-semibold text-xs">DESCRIPTION</p>
-              <p className="font-semibold opacity-70 text-justify text-xs">
+              {/*whitespace-pre-line -> Navegador interprete quebra de linha (\n) no layout*/}
+              <p className="font-semibold opacity-70 text-justify text-xs whitespace-pre-line">
                 {product.description}
               </p>
             </div>
