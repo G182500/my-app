@@ -18,7 +18,7 @@ export async function GET(req: Request, { params }: { params: Params }) {
     const client = await pool.connect();
 
     const productById = await client.query(
-      `SELECT * FROM products WHERE _id = '${params.id}'`
+      `SELECT * FROM product WHERE _id = '${params.id}'`
     );
 
     client.release(); //close connection

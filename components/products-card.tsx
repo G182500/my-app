@@ -6,6 +6,15 @@ interface ProductsCardProps {
   title: string;
 }
 
+/*
+Tabela "Categoria":
+_id: (chave primária)
+products: (integer para quantidade)
+Outros atributos relevantes
+
+MOSTRAR APENAS SKELETON DE CATEGORIAS COM PELO MENOS 1 PRODUTO 
+*/
+
 const ProductsCard = ({ title }: ProductsCardProps) => {
   const getProducts = useGetProductsByCategory(title, {
     enabled: true,

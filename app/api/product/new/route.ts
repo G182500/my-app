@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     await req.json();
 
   const insertProduct = await client.query(
-    `INSERT INTO products (_id, images_url, title, description, price, category, quantity) VALUES ('${_id}', '${images_url}', '${title}', '${description}', ${price}, '${category}', ${quantity})`
+    `INSERT INTO product (_id, images_url, title, description, price, category, quantity) VALUES ('${_id}', '${images_url}', '${title}', '${description}', ${price}, '${category}', ${quantity})`
   );
   client.release();
 
