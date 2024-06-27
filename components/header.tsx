@@ -77,9 +77,9 @@ const Header = () => {
         <div className="flex gap-4 items-center">
           <SideNavigation />
           <p className="text-2xl">LOGOO</p>
-          <Input className="w-60 md:w-72 lg:w-96" />
+          <Input className="w-60 md:w-72" />
         </div>
-        <div className="hidden md:flex items-center space-x-5">
+        <div className="hidden md:flex items-center space-x-8">
           <Link
             href="/profile"
             className="flex bg-[#424242] gap-1 items-center pr-2 rounded-xl text-gray-300 hover:text-white"
@@ -87,19 +87,6 @@ const Header = () => {
             <CircleUserRound size={28} />
             <p className="font-semibold text-lg">{userName}</p>
           </Link>
-          {admin && (
-            <>
-              <Link
-                href="/product/all"
-                className="flex gap-1 items-center text-gray-300 hover:text-white"
-              >
-                <GalleryVerticalEnd size={28} />
-              </Link>
-              <Link href="/users" className="text-gray-300 hover:text-white">
-                <Users2 size={28} />
-              </Link>
-            </>
-          )}
           <Link href="/cart" className="text-gray-300 hover:text-white">
             <ShoppingCart size={28} />
           </Link>

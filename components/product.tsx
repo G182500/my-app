@@ -23,7 +23,7 @@ se não pudermos apontar para o arquivo no disco, basicamente o perderemos. Lemb
 
 const Product = ({ _id, images_url, title, price, oldPrice }: ProductProps) => {
   const router = useRouter();
-  const imgSize = "h-40 w-72 sm:h-56 sm:w-full";
+  const imgSize = "h-40 w-72 md:h-56 md:w-full";
 
   const fees = (Math.round(price / 2) + price * 0.06).toLocaleString("pt-br", {
     maximumFractionDigits: 2,
@@ -34,7 +34,7 @@ const Product = ({ _id, images_url, title, price, oldPrice }: ProductProps) => {
   return (
     <div
       title={title}
-      className="flex sm:flex-col bg-[#424242] rounded-md hover:opacity-70 hover:cursor-pointer"
+      className="flex md:flex-col bg-[#424242] rounded-md hover:opacity-70 hover:cursor-pointer"
       onClick={() => {
         router.push(`/product/${_id}`);
       }}
@@ -45,16 +45,18 @@ const Product = ({ _id, images_url, title, price, oldPrice }: ProductProps) => {
             fill
             src={images_url.split(";")[0]}
             alt={title}
-            className="absolute rounded-l-md object-cover sm:rounded-t-md sm:rounded-bl-none"
+            className="absolute rounded-l-md object-cover md:rounded-t-md md:rounded-bl-none"
           />
         </div>
       ) : (
         <div className={`flex flex-col items-center justify-center ${imgSize}`}>
-          <ImageIcon className="size-24 sm:size-36" color="#9c9c9c" />
+          <ImageIcon className="size-24 md:size-36" color="#9c9c9c" />
         </div>
       )}
-      <div className="flex flex-col px-3 py-2 justify-around w-full sm:h-40 sm:justify-between sm:py-3">
-        <p className="font-semibold text-sm line-clamp-2">{title}</p>
+      <div className="flex flex-col px-3 py-2 justify-around w-full md:h-40 md:justify-between md:py-3">
+        <p className="font-semibold text-sm line-clamp-2 lg:text-base">
+          {title}
+        </p>
 
         {/*Modelos de informações - Fazer componente de StatusLabel depois
         <div className="flex gap-2">
@@ -91,7 +93,7 @@ const Product = ({ _id, images_url, title, price, oldPrice }: ProductProps) => {
             ou 2x de R$ {fees}
           </p>
         </div>
-        <button className="flex items-center justify-end gap-2 sm:justify-center">
+        <button className="flex items-center justify-end gap-2 md:justify-center">
           <p className="font-semibold italic text-sm">View details</p>
           <ArrowRightCircle size={16} />
         </button>
