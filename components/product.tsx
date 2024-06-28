@@ -1,4 +1,5 @@
 import { IProduct } from "@/interfaces/product";
+import formatToCurrency from "@/utils/formatToCurrency";
 import { ImageIcon, ArrowRightCircle } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -84,10 +85,7 @@ const Product = ({ _id, images_url, title, price, oldPrice }: ProductProps) => {
 
         <div>
           <p className="font-semibold text-2xl text-green-400">
-            R${" "}
-            {price.toLocaleString("pt-br", {
-              minimumFractionDigits: 2,
-            })}
+            R$ {formatToCurrency(price)}
           </p>
           <p className="font-medium ml-1 opacity-75 text-white text-xs">
             ou 2x de R$ {fees}

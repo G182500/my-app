@@ -17,10 +17,13 @@ export async function POST(req: Request) {
 
   console.log(insertProduct);
   if (!insertProduct.rows.length)
-    return Response.json({ message: "Erro ao criar produto" }, { status: 500 });
+    return Response.json(
+      { status: "error", message: "Erro ao criar o produto, tente novamente" },
+      { status: 500 }
+    );
 
   return Response.json(
-    { message: "Produto criado com sucesso" },
+    { status: "success", message: "Produto criado com sucesso" },
     { status: 200 }
   );
 }

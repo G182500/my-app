@@ -5,46 +5,41 @@ import { IProduct } from "@/interfaces/product";
 import { generateId } from "@/utils/generate-id";
 import { Toaster } from "@/components/ui/toaster/toaster";
 import { useToast } from "@/components/ui/toaster/use-toast";
-
-const createProduct = async (product: IProduct) => {
-  product._id = generateId();
-  product.price = Number(product.price);
-  if (!product.images_url) {
-    product.images_url = "/imgs/products/iowa.jpeg;";
-  }
-
-  const resp = await fetch(`/api/product/new`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(product),
-  });
-
-  return await resp.json();
-};
+import { useGenerateProduct } from "@/services/product/use-generate-product";
+import { useEffect } from "react";
 
 const Create = () => {
   //const { signIn } = useContext(AuthContext);
   const { toast } = useToast();
-  const { register, reset, handleSubmit, setValue, getValues } =
-    useForm<IProduct>();
+  const {
+    formState,
+    register,
+    reset,
+    handleSubmit,
+    setError,
+    setValue,
+    getValues,
+  } = useForm<IProduct>();
+
+  const generateProductMutation = useGenerateProduct();
 
   const onSubmit: SubmitHandler<IProduct> = async (data) => {
     try {
-      const resp = await createProduct(data);
-      console.log(resp.status === 200);
-      /*reset();
-        toast({
-          variant: "success",
-          title: "Produto criado com sucesso",
-        });*/
+      /*const resp = await generateProductMutation.mutateAsync({
+        product: data,
+      });
+      if (resp.status == "success") reset();
+      toast({
+        variant: resp.status,
+        title: resp.message,
+      });*/
     } catch (error) {
       console.log(error);
     }
   };
 
   const inputClass = "font-medium text-white placeholder-gray-400";
+  console.log(formState.errors);
 
   return (
     <div className="flex flex-col bg-[#1d1d1d] p-4 space-y-4 sm:rounded-lg">
@@ -77,6 +72,10 @@ const Create = () => {
               type="text"
               {...register("price", {
                 required: true,
+                pattern: {
+                  value: /^\d+(\.\d{1,2})?$/, // Regex for numeric with up to 2 decimal places
+                  message: "Formato de preço inválido (Ex: 1499.90)",
+                },
               })}
             />
           </div>

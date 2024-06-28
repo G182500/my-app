@@ -24,16 +24,20 @@ export async function GET(req: Request, { params }: { params: Params }) {
 
     client.release(); //close connection
 
+    let hasProducts = productsByCategory.rows.length;
+
     return Response.json(
       {
-        message: "sucesso ao buscar os produtos",
-        products: productsByCategory.rows,
+        message: hasProducts
+          ? "Sucesso ao buscar os produtos"
+          : "Nenhum produto cadastrado",
+        products: hasProducts ? productsByCategory.rows : [],
       },
       { status: 200 }
     );
   } catch {
     return Response.json(
-      { message: "erro ao buscar os produtos" },
+      { message: "Erro ao buscar os produtos" },
       { status: 500 }
     );
   }
