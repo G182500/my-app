@@ -108,7 +108,7 @@ const Create = () => {
           </button>
         </div>
       </form>
-      <div className="flex space-x-2">
+      <div className="flex space-x-1">
         {formErrorMessages.map((message, index) => (
           <p
             className="font-medium ml-1 text-sm text-red-500"
