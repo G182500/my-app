@@ -28,22 +28,20 @@ const Create = () => {
 
   const onSubmit: SubmitHandler<IProduct> = async (data) => {
     try {
-      console.log("submit");
-      /*const resp = await generateProductMutation.mutateAsync({
+      const resp = await generateProductMutation.mutateAsync({
         product: data,
       });
       if (resp.status == "success") reset();
       toast({
         variant: resp.status,
         title: resp.message,
-      });*/
+      });
     } catch (error) {
       console.log(error);
     }
   };
 
   const inputClass = "font-medium text-white placeholder-gray-400";
-  console.log(formState.errors);
 
   return (
     <div className="flex flex-col bg-[#1d1d1d] p-4 space-y-4 sm:rounded-lg">
