@@ -1,12 +1,11 @@
 "use client";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, FieldErrors } from "react-hook-form";
 import QuantityInput from "@/components/ui/quantity-input";
 import { IProduct } from "@/interfaces/product";
 import { generateId } from "@/utils/generate-id";
 import { Toaster } from "@/components/ui/toaster/toaster";
 import { useToast } from "@/components/ui/toaster/use-toast";
 import { useGenerateProduct } from "@/services/product/use-generate-product";
-import { useEffect } from "react";
 
 const Create = () => {
   //const { signIn } = useContext(AuthContext);
@@ -23,8 +22,13 @@ const Create = () => {
 
   const generateProductMutation = useGenerateProduct();
 
+  const formErrorMessages = Object.keys(formState.errors).map((key) => {
+    return formState.errors[key as keyof IProduct]?.message;
+  });
+
   const onSubmit: SubmitHandler<IProduct> = async (data) => {
     try {
+      console.log("submit");
       /*const resp = await generateProductMutation.mutateAsync({
         product: data,
       });
@@ -52,7 +56,7 @@ const Create = () => {
           className={`bg-[#424242] p-2 rounded-md w-full ${inputClass}`}
           placeholder="Title"
           type="text"
-          {...register("title", { required: true })}
+          {...register("title", { required: "Title is required" })}
         />
         <div className="flex space-x-4">
           <select
@@ -71,10 +75,10 @@ const Create = () => {
               placeholder="1499.90"
               type="text"
               {...register("price", {
-                required: true,
+                required: "Price is required",
                 pattern: {
                   value: /^\d+(\.\d{1,2})?$/, // Regex for numeric with up to 2 decimal places
-                  message: "Formato de preço inválido (Ex: 1499.90)",
+                  message: "Invalid price format (Ex: 1499.90)",
                 },
               })}
             />
@@ -96,6 +100,7 @@ const Create = () => {
             register={register("quantity", { required: true })}
           />
           <button
+            //disabled={!formState.isValid}
             className="flex bg-[#1b5a8d] font-semibold items-center justify-center gap-2 py-3 rounded-md w-full"
             type="submit"
           >
@@ -103,6 +108,16 @@ const Create = () => {
           </button>
         </div>
       </form>
+      <div className="flex space-x-2">
+        {formErrorMessages.map((message, index) => (
+          <p
+            className="font-medium ml-1 text-sm text-red-500"
+            key={`error${index}`}
+          >
+            {message}.
+          </p>
+        ))}
+      </div>
       <Toaster />
     </div>
   );
