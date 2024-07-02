@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 
 import { cn } from "@/utils/cn";
 
-const Input = ({ className }: { className?: string }) => {
+const SearchInput = ({ className }: { className?: string }) => {
   return (
     <div className="relative flex items-center">
       <input
@@ -23,4 +23,4 @@ const Input = ({ className }: { className?: string }) => {
   );
 };
 
-export default Input;
+export default SearchInput;

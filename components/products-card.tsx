@@ -1,6 +1,7 @@
 import Product from "./product";
 import { useGetProductsByCategory } from "@/services/product/get-by-category";
 import Skeleton from "./skeleton";
+import { useEffect } from "react";
 
 interface ProductsCardProps {
   title: string;
@@ -19,6 +20,7 @@ const ProductsCard = ({ title }: ProductsCardProps) => {
   const getProducts = useGetProductsByCategory(title, {
     enabled: true,
   });
+
   let products = getProducts.data?.products;
 
   return (

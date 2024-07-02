@@ -10,12 +10,11 @@ import {
   Users,
   Users2,
 } from "lucide-react";
-import Input from "./ui/input";
+import SearchInput from "./ui/search-input";
 import { AuthContext } from "@/contexts/auth-provider";
 import { useContext } from "react";
 import { Toaster } from "./ui/toaster/toaster";
 import { useToast } from "./ui/toaster/use-toast";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import Link from "next/link";
 import SideNavigation from "./menu/side-navigation";
 import Image from "next/image";
@@ -77,7 +76,7 @@ const Header = () => {
         <div className="flex gap-4 items-center">
           <SideNavigation />
           <p className="text-2xl">LOGOO</p>
-          <Input className="w-60 md:w-72" />
+          <SearchInput className="w-60 md:w-72" />
         </div>
         <div className="hidden md:flex items-center space-x-8">
           <Link

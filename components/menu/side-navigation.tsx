@@ -49,11 +49,11 @@ const SideNavigation = () => {
   ];
 
   const sideNavClass = `bg-[#505050] top-0 left-0 fixed h-screen duration-300 z-40 ${
-    isOpen ? "p-2 w-60" : "w-0 p-0 pointer-events-none"
+    isOpen ? "p-2 w-64 2xl:w-80" : "w-0 p-0 pointer-events-none"
   }`;
 
   return (
-    <div className="flex md:hidden">
+    <div className="flex">
       <MenuIcon
         id="sideNavTrigger"
         className="text-gray-300 hover:text-white hover:cursor-pointer"
@@ -91,7 +91,7 @@ const SideNavigation = () => {
                         href={subItem.page}
                         className={`flex font-medium gap-2 items-center text-lg ${
                           pathname === subItem.page
-                            ? "text-green-400"
+                            ? "text-green-400 hover:cursor-default"
                             : "text-gray-300 hover:text-white"
                         }`}
                         key={`subItem${index1 + 1}${index2 + 1}`}
