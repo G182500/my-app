@@ -18,10 +18,16 @@ MOSTRAR APENAS SKELETON DE CATEGORIAS COM PELO MENOS 1 PRODUTO
 
 const ProductsCard = ({ title }: ProductsCardProps) => {
   const getProducts = useGetProductsByCategory(title, {
-    enabled: true,
+    enabled: false,
   });
 
   let products = getProducts.data?.products;
+
+  useEffect(() => {
+    if (!products) {
+      getProducts.refetch();
+    }
+  }, []);
 
   return (
     <div
@@ -41,7 +47,7 @@ const ProductsCard = ({ title }: ProductsCardProps) => {
         </p>
       ) : (
         <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-          {getProducts.isFetching ? (
+          {getProducts.isFetching || !products ? (
             <>
               <Skeleton className="h-40 rounded-md md:h-[368px]" />
               <Skeleton className="h-40 rounded-md md:h-[368px]" />

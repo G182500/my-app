@@ -1,5 +1,4 @@
 import { Search } from "lucide-react";
-
 import { cn } from "@/utils/cn";
 
 const SearchInput = ({ className }: { className?: string }) => {

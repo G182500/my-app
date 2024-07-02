@@ -1,9 +1,9 @@
 import Link from "next/link";
 import {
-  GalleryVerticalEnd,
   HomeIcon,
   LogOut,
   MenuIcon,
+  ShoppingBag,
   ShoppingCart,
   SquarePlus,
   User2,
@@ -31,8 +31,8 @@ const SideNavigation = () => {
           page: "/product/new",
         },
         {
-          icon: <GalleryVerticalEnd size={22} />,
-          text: "Inventary",
+          icon: <ShoppingBag size={22} />,
+          text: "Products",
           page: "/product/all",
         },
         { icon: <Users2 size={22} />, text: "Users", page: "/users" },

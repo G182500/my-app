@@ -81,7 +81,7 @@ const Header = () => {
         <div className="hidden md:flex items-center space-x-8">
           <Link
             href="/profile"
-            className="flex bg-[#424242] gap-1 items-center pr-2 rounded-xl text-gray-300 hover:text-white"
+            className="hidden lg:flex bg-[#424242] gap-1 items-center pr-2 rounded-xl text-gray-300 hover:text-white"
           >
             <CircleUserRound size={28} />
             <p className="font-semibold text-lg">{userName}</p>
