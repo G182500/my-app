@@ -17,7 +17,7 @@ export const useGenerateProduct = () =>
       product.price = Number(product.price);
 
       if (!product.images_url)
-        product.images_url = "/imgs/products/sehnsucht.jpeg;";
+        product.images_url = "/imgs/products/sehnsucht.jpg;";
 
       const resp = await fetch(`/api/product/new`, {
         method: "POST",

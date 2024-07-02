@@ -6,6 +6,7 @@ import { generateId } from "@/utils/generate-id";
 import { Toaster } from "@/components/ui/toaster/toaster";
 import { useToast } from "@/components/ui/toaster/use-toast";
 import { useGenerateProduct } from "@/services/product/use-generate-product";
+import { Loader2 } from "lucide-react";
 
 const Create = () => {
   //const { signIn } = useContext(AuthContext);
@@ -45,7 +46,15 @@ const Create = () => {
 
   return (
     <div className="flex flex-col bg-[#1d1d1d] p-4 space-y-4 sm:rounded-lg">
-      <p className="font-semibold text-lg md:text-2xl">New Product</p>
+      <p className="flex font-semibold gap-2 text-lg md:text-2xl">
+        New Product
+        <Loader2
+          color="#4ade80"
+          className={
+            generateProductMutation.isPending ? "animate-spin" : "hidden"
+          }
+        />
+      </p>
       <form
         className="flex flex-col space-y-4"
         onSubmit={handleSubmit(onSubmit)}

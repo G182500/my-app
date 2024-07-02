@@ -16,7 +16,7 @@ export async function POST(req: Request) {
   client.release();
 
   console.log(insertProduct);
-  if (!insertProduct.rows.length)
+  if (!insertProduct.rowCount)
     return Response.json(
       { status: "error", message: "Erro ao criar o produto, tente novamente" },
       { status: 500 }
