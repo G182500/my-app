@@ -1,3 +1,4 @@
+"use client";
 import Product from "./product";
 import { useGetProductsByCategory } from "@/services/product/get-by-category";
 import Skeleton from "./skeleton";
@@ -41,15 +42,14 @@ const ProductsCard = ({ title }: ProductsCardProps) => {
           Erro ao carregar produtos, recarregue a página
         </p>
       ) : (
-        <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+        <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-3 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
           {getProducts.isFetching ? (
             <>
-              <Skeleton className="h-40 rounded-md md:h-[368px]" />
-              <Skeleton className="h-40 rounded-md md:h-[368px]" />
-              <Skeleton className="h-40 rounded-md md:h-[368px]" />
-              <Skeleton className="hidden rounded-md h-[368px] lg:block" />
-              <Skeleton className="hidden rounded-md h-[368px] xl:block" />
-              <Skeleton className="hidden rounded-md h-[368px] 2xl:block" />
+              <Skeleton className="h-40 rounded-md md:h-[380px] xl:h-[446px]" />
+              <Skeleton className="h-40 rounded-md md:h-[380px] xl:h-[446px]" />
+              <Skeleton className="h-40 rounded-md md:h-[380px] xl:h-[446px]" />
+              <Skeleton className="hidden rounded-md h-[446px] xl:block" />
+              <Skeleton className="hidden rounded-md h-[446px] 2xl:block" />
             </>
           ) : (
             products && (
@@ -62,20 +62,13 @@ const ProductsCard = ({ title }: ProductsCardProps) => {
                   <Product
                     {...products[3]}
                     key={products[3]._id}
-                    className="hidden lg:block"
+                    className="hidden xl:block"
                   />
                 )}
                 {products[4] && (
                   <Product
                     {...products[4]}
                     key={products[4]._id}
-                    className="hidden xl:block"
-                  />
-                )}
-                {products[5] && (
-                  <Product
-                    {...products[5]}
-                    key={products[5]._id}
                     className="hidden 2xl:block"
                   />
                 )}

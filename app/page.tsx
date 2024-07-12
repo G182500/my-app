@@ -1,16 +1,12 @@
-"use client";
-import { AuthContext } from "@/contexts/auth-provider";
-import { useContext } from "react";
 import ProductsCard from "@/components/products-card";
+import SearchResult from "@/components/search-result";
 
-const Home = () => {
-  const { user } = useContext(AuthContext);
+const Home = ({ searchParams }: { searchParams?: { query?: string } }) => {
+  const query = searchParams?.query || "";
 
-  /*const getProducts = useGetAllCategory({
-    enabled: true,
-  });*/
-
-  return (
+  return query.length ? (
+    <SearchResult query={query} />
+  ) : (
     <>
       <ProductsCard title="Compact Discs" />
       <ProductsCard title="Movies" />

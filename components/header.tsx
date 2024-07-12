@@ -1,23 +1,9 @@
 "use client";
 
-//import logo from "@/assets/imgs/lindemann-logo.png";
-import {
-  ShoppingCart,
-  CircleUserRound,
-  LogOut,
-  SquarePlus,
-  GalleryVerticalEnd,
-  Users,
-  Users2,
-} from "lucide-react";
+import { ShoppingCart, CircleUserRound, LogOut } from "lucide-react";
 import SearchInput from "./ui/search-input";
-import { AuthContext } from "@/contexts/auth-provider";
-import { useContext } from "react";
-import { Toaster } from "./ui/toaster/toaster";
-import { useToast } from "./ui/toaster/use-toast";
 import Link from "next/link";
 import SideNavigation from "./menu/side-navigation";
-import Image from "next/image";
 
 const getSalutation = () => {
   const hour = new Date().getHours();
@@ -46,21 +32,6 @@ const salutation = getSalutation();
 
 const Header = () => {
   //const { signIn, isAuthenticated } = useContext(AuthContext);
-  const { toast } = useToast();
-  /*
-  <Toaster />
-          <button
-            onClick={() =>
-              toast({
-                variant: "error",
-                title: "Menu ainda não desenvolvido",
-              })
-            }
-          >
-            <MenuIcon size={28} />
-          </button>
-  */
-
   const isAuthenticated = true;
 
   //const userId = localStorage.getItem("userId");
@@ -75,8 +46,7 @@ const Header = () => {
       <div className="flex bg-[#1d1d1d] justify-around px-3 py-4 w-full fixed z-10">
         <div className="flex gap-4 items-center">
           <SideNavigation />
-          <p className="text-2xl">LOGOO</p>
-          <SearchInput className="w-60 md:w-72" />
+          <SearchInput className="w-72 md:w-80" />
         </div>
         <div className="hidden md:flex items-center space-x-8">
           <Link

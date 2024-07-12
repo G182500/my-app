@@ -20,7 +20,7 @@ Data de Início
 Data de Término
 Outros atributos relevantes da promoção*/
 
-const imgSize = "h-40 w-72 md:h-56 md:w-full";
+const imgSize = "h-40 w-72 md:h-56 md:w-full xl:h-72";
 
 /*bg-[#4682B4]*/
 /*O nome do arquivo deve permanecer imutável e gerado aleatoriamente para evitar a sobreposição com outros arquivos,

@@ -5,7 +5,6 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import QueryCliProvider from "@/contexts/query-client-provider";
-import { Toaster } from "@/components/ui/toaster/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
