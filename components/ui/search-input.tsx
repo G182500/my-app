@@ -2,7 +2,7 @@
 import { Search } from "lucide-react";
 import { cn } from "@/utils/cn";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 interface SearchInputProps {
