@@ -2,9 +2,11 @@ import { IProduct } from "@/interfaces/product";
 import formatToCurrency from "@/utils/formatToCurrency";
 import { ImageIcon, ArrowRightCircle } from "lucide-react";
 import Image from "next/image";
+import { cn } from "@/utils/cn";
 import { useRouter } from "next/navigation";
 
 interface ProductProps extends IProduct {
+  className?: string;
   oldPrice?: number;
 }
 
@@ -18,13 +20,21 @@ Data de Início
 Data de Término
 Outros atributos relevantes da promoção*/
 
+const imgSize = "h-40 w-72 md:h-56 md:w-full";
+
 /*bg-[#4682B4]*/
 /*O nome do arquivo deve permanecer imutável e gerado aleatoriamente para evitar a sobreposição com outros arquivos,
 se não pudermos apontar para o arquivo no disco, basicamente o perderemos. Lembre-se de que você também precisará excluir o registro dos metadados se precisar excluir o arquivo. */
 
-const Product = ({ _id, images_url, title, price, oldPrice }: ProductProps) => {
+const Product = ({
+  _id,
+  images_url,
+  title,
+  price,
+  oldPrice,
+  className,
+}: ProductProps) => {
   const router = useRouter();
-  const imgSize = "h-40 w-72 md:h-56 md:w-full";
 
   const fees = (Math.round(price / 2) + price * 0.06).toLocaleString("pt-br", {
     maximumFractionDigits: 2,
@@ -35,7 +45,10 @@ const Product = ({ _id, images_url, title, price, oldPrice }: ProductProps) => {
   return (
     <div
       title={title}
-      className="flex md:flex-col bg-[#424242] rounded-md hover:opacity-70 hover:cursor-pointer"
+      className={cn(
+        "flex md:flex-col bg-[#424242] rounded-md hover:opacity-70 hover:cursor-pointer",
+        className
+      )}
       onClick={() => {
         router.push(`/product/${_id}`);
       }}

@@ -47,13 +47,40 @@ const ProductsCard = ({ title }: ProductsCardProps) => {
               <Skeleton className="h-40 rounded-md md:h-[368px]" />
               <Skeleton className="h-40 rounded-md md:h-[368px]" />
               <Skeleton className="h-40 rounded-md md:h-[368px]" />
+              <Skeleton className="hidden rounded-md h-[368px] lg:block" />
+              <Skeleton className="hidden rounded-md h-[368px] xl:block" />
+              <Skeleton className="hidden rounded-md h-[368px] 2xl:block" />
             </>
           ) : (
-            <>
-              {products?.map((item) => (
-                <Product {...item} key={item._id} />
-              ))}
-            </>
+            products && (
+              <>
+                {products.map(
+                  (item, index) =>
+                    index < 3 && <Product {...item} key={item._id} />
+                )}
+                {products[3] && (
+                  <Product
+                    {...products[3]}
+                    key={products[3]._id}
+                    className="hidden lg:block"
+                  />
+                )}
+                {products[4] && (
+                  <Product
+                    {...products[4]}
+                    key={products[4]._id}
+                    className="hidden xl:block"
+                  />
+                )}
+                {products[5] && (
+                  <Product
+                    {...products[5]}
+                    key={products[5]._id}
+                    className="hidden 2xl:block"
+                  />
+                )}
+              </>
+            )
           )}
         </div>
       )}
