@@ -57,7 +57,7 @@ const SideNavigation = () => {
       <MenuIcon
         id="sideNavTrigger"
         className="text-gray-300 hover:text-white hover:cursor-pointer"
-        size={30}
+        size={32}
         onClick={() => {
           setIsOpen(!isOpen);
         }}

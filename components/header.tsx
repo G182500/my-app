@@ -46,7 +46,7 @@ const Header = () => {
       <div className="flex bg-[#1d1d1d] justify-around px-3 py-4 w-full fixed z-10">
         <div className="flex gap-4 items-center">
           <SideNavigation />
-          <SearchInput className="w-72 md:w-80" />
+          <SearchInput className="w-80" />
         </div>
         <div className="hidden md:flex items-center space-x-8">
           <Link

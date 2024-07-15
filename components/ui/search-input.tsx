@@ -45,9 +45,9 @@ const SearchInput = ({ className }: SearchInputProps) => {
       />
       <button
         type="submit"
-        className="absolute end-0 bg-[#4ade80] h-full px-3 rounded-r-lg"
+        className="absolute end-0 bg-[#4682B4] h-full px-4 rounded-r-lg"
       >
-        <Search color="black" size={20} strokeWidth={3} />
+        <Search color="white" size={20} strokeWidth={3} />
       </button>
     </form>
   );
