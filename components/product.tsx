@@ -1,5 +1,5 @@
 import { IProduct } from "@/interfaces/product";
-import formatToCurrency from "@/utils/formatToCurrency";
+import formatToCurrency from "@/utils/format-currency";
 import { ImageIcon, ArrowRightCircle } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/utils/cn";
