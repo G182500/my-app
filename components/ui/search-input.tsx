@@ -11,21 +11,20 @@ interface SearchInputProps {
 
 const SearchInput = ({ className }: SearchInputProps) => {
   const { handleSubmit, register } = useForm();
-  const pathname = usePathname();
-  const { replace } = useRouter();
+  const { push, replace } = useRouter();
 
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const params = new URLSearchParams(searchParams);
 
   useEffect(() => {
-    if (params) {
-      //LIMPAR URL DE BUSCA
-    }
+    if (params) params.delete("query");
   }, []);
 
   const onSubmit: SubmitHandler<any> = async ({ searchTerm }) => {
     if (searchTerm) params.set("query", searchTerm);
     else params.delete("query");
+
     replace(`${pathname}?${params.toString()}`);
   };
 

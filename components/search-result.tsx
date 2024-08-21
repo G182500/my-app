@@ -26,8 +26,8 @@ const SearchResult = ({ query }: SearchResultProps) => {
       </div>
       {getProducts.isFetching ? (
         <div className="flex pb-4 gap-2 self-center">
-          <Loader2 color="#4ade80" className="animate-spin" />
-          <p className="font-medium opacity-65 text-white">
+          <Loader2 color="#4ade80" strokeWidth={3} className="animate-spin" />
+          <p className="font-medium opacity-80 text-white">
             Buscando produtos...
           </p>
         </div>
